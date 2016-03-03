@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block stylesheets %}
     {{ parent() }}
 
@@ -20,7 +22,7 @@
             <div style="padding-top:30px" class="panel-body">
 
                 <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_start(form, {'method': 'post', 'action': path('user_bundle.edit_profile'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
                 {{ form_row (form.email, { attr : { class :"form-control" } }) }}
 
@@ -28,11 +30,11 @@
 
                 {{ form_row (form.birthday, { attr : { class :"form-control" } } )}}
 
-                {{ form_row (form.avatarUrl, { attr: { class :"form-control" }}) }}
+                {{ form_row (form.avatar, { attr: { class :"form-control" }}) }}
 
                 <div class="col-sm-12 controls" style="padding-top:15px">
                     <input class="form-control btn btn-primary" type="submit" id="_submit" name="_submit"
-                           value="{{ 'security.login.submit'|trans }}"/>
+                           value="{{ 'profile.edit.submit'|trans }}"/>
                 </div>
                 {{ form_end(form) }}
             </div>

@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Comur\ImageBundle\ComurImageBundle(),
             new StaticPagesBundle\StaticPagesBundle(),
+            new FrameworkExtensionBundle\FrameworkExtensionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

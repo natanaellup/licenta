@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class User extends BaseUser
@@ -30,6 +31,21 @@ class User extends BaseUser
      */
     protected $avatarUrl;
 
+    /**
+     * Old avatar path.
+     *
+     * @var string
+     */
+    protected $oldAvatarUrl;
+
+    /**
+     * @var UploadedFile
+     */
+    protected $avatar;
+
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -88,5 +104,43 @@ class User extends BaseUser
         $this->avatarUrl = $avatarUrl;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getOldAvatarUrl()
+    {
+        return $this->oldAvatarUrl;
+    }
+
+    /**
+     * @param string $oldAvatarUrl
+     * @return User
+     */
+    public function setOldAvatarUrl($oldAvatarUrl)
+    {
+        $this->oldAvatarUrl = $oldAvatarUrl;
+        return $this;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param UploadedFile $avatar
+     * @return User
+     */
+    public function setAvatar($avatar = null)
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+
 }
 

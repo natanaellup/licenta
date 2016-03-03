@@ -1,3 +1,7 @@
+framework_extension:
+    resource: "@FrameworkExtensionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 static_pages:
     resource: "@StaticPagesBundle/Resources/config/routing.yml"
     prefix:   /
