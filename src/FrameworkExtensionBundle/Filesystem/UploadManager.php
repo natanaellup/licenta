@@ -68,19 +68,20 @@ class UploadManager
         if (null == $file) {
             return;
         }
-        // get new name and location for new document
+        // obtinem noua locatie si noul nume
         $filePath = $this->documentsUploadDir . '/' . $namePath . '-' . uniqid('', true) . '.' . $file->guessExtension();
-        // move file
+
+        // muta fisierul
         $fileDir = $this->fileManager->publicToAbsolute(dirname($filePath));
         $fileName = basename($filePath);
         $file->move($fileDir, $fileName);
 
         $object->$setFile(null);
 
-        // set terms url for data store
+        // setez url noului fisier pe entitate
         $object->$setFileUrl($filePath);
 
-        // remove old terms
+        // sterge vechiul document
         $oldFileUrl = $object->$getOldFileUrl();
         if (!empty($oldFileUrl)) {
             $this->fileSystem->remove($this->fileManager->publicToAbsolute($oldFileUrl));

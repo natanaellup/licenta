@@ -38,12 +38,12 @@ twig:
     form:
             resources:
                 - 'SonataCoreBundle:Form:datepicker.html.twig'
-
+                - 'FrameworkExtensionBundle:Form:fields.html.twig'
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ UserBundle ]
+    bundles:        [ UserBundle, AdminOverrideBundle, BookBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -101,9 +101,49 @@ fos_user:
     firewall_name: main
     user_class: UserBundle\Entity\User
 
+# Sonata Admin Configuration
+sonata_admin:
+    title:                  'BookLand'
+    options:
+        pager_links: 10
+        html5_validate: false
+    persist_filters: true
+    security:
+        handler: sonata.admin.security.handler.role
+    templates:
+        # default global templates
+        user_block: AdminOverrideBundle:Block:block_user.html.twig
+        layout:     AdminOverrideBundle:standard_layout.html.twig
+        ajax:       SonataAdminBundle::ajax_layout.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+
+
 sonata_block:
     default_contexts: [cms]
     blocks:
-        # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+
+liip_imagine:
+    resolvers:
+        defaults:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+
+        # Below will be defined our image styles.
+        avatar_profile_edit:
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
+        admin_show_avatar:
+                    filters:
+                        thumbnail: { size: [45, 45], mode: outbound }

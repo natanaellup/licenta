@@ -1,0 +1,25 @@
+BookBundle\Entity\Author:
+    type: entity
+    table: author
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: text
+            nullable: true
+        imageUrl:
+            type: string
+            nullable: false
+            length: 255

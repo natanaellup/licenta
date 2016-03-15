@@ -11,6 +11,11 @@ class User extends BaseUser
 {
 
     /**
+     * Default photo url.
+     */
+    const DEFAULT_PHOTO_URL = 'uploads/user_avatar/avatar-default.png';
+
+    /**
      * User id.
      *
      * @var integer
@@ -90,7 +95,11 @@ class User extends BaseUser
      */
     public function getAvatarUrl()
     {
-        return $this->avatarUrl;
+        if(!is_null($this->avatarUrl)){
+            return $this->avatarUrl;
+        }
+
+        return self::DEFAULT_PHOTO_URL;
     }
 
     /**
@@ -101,6 +110,7 @@ class User extends BaseUser
      */
     public function setAvatarUrl($avatarUrl)
     {
+        $this->oldAvatarUrl = $this->avatarUrl;
         $this->avatarUrl = $avatarUrl;
         return $this;
     }

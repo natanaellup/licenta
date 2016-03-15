@@ -29,37 +29,7 @@ class User implements EventSubscriber
      */
     public function getSubscribedEvents()
     {
-       return array('prePersist','preUpdate','postRemove');
-    }
-
-    /**
-     * PreUpdate event.
-     *
-     * @param LifecycleEventArgs $eventArgs
-     */
-    public function preUpdate(LifecycleEventArgs $eventArgs)
-    {
-        $user = $eventArgs->getObject();
-
-        if ($user instanceof UserEntity) {
-            $this->uploadManager->setDocumentUploadDir('user_avatar');
-            $this->uploadManager->setDocumentUrl($user,'getAvatar','setAvatar','setAvatarUrl','getOldAvatarUrl','avatar');
-        }
-    }
-
-    /**
-     * PrePersist event.
-     *
-     * @param LifecycleEventArgs $eventArgs
-     */
-    public function prePersist(LifecycleEventArgs $eventArgs)
-    {
-        $user = $eventArgs->getObject();
-
-        if ($user instanceof UserEntity) {
-            $this->uploadManager->setDocumentUploadDir('user_avatar');
-            $this->uploadManager->setDocumentUrl($user,'getAvatar','setAvatar','setAvatarUrl','getOldAvatarUrl','avatar');
-        }
+       return array('postRemove');
     }
 
     /**
@@ -72,7 +42,7 @@ class User implements EventSubscriber
         $user = $eventArgs->getObject();
 
         if($user instanceof UserEntity){
-            $this->uploadManager->removeDocument($user,'getAvatarUrl');
+            $this->uploadManager->removeDocument($user,'getOldAvatarUrl');
         }
     }
 }

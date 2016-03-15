@@ -1,0 +1,4 @@
+BookBundle\Entity\Category:
+  properties:
+      name:
+          - NotBlank: ~

@@ -22,6 +22,11 @@
     </head>
     <body>
     <div class="container">
+
+        {% block admin_bar %}
+            
+        {% endblock %}
+
         {% block content %}{% endblock %}
     </div>
         {% block javascript_libs %}

@@ -11,3 +11,9 @@ services:
         class: FrameworkExtensionBundle\Filesystem\UploadManager
         arguments: [%public_dir%,@framework_extension.path_manager]
 
+    framework_extension.form.extension.image_type:
+        class: FrameworkExtensionBundle\Form\Extension\ImageTypeExtension
+        arguments: [%kernel.bundles%]
+        tags:
+            - { name: form.type_extension, alias: file }
+

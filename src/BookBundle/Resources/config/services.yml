@@ -1,0 +1,22 @@
+services:
+    bookbundle.book_category_admin:
+        class: BookBundle\Admin\CategoryAdmin
+        arguments:
+          - ~
+          - BookBundle\Entity\Category
+          - ~
+        tags:
+          - { name: sonata.admin, manager_type: orm, label: "Category", group: "Book" }
+        calls:
+          - [setTranslationDomain, [admin]]
+
+    bookbundle.author_admin:
+            class: BookBundle\Admin\AuthorAdmin
+            arguments:
+              - ~
+              - BookBundle\Entity\Author
+              - ~
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: "Author", group: "Book" }
+            calls:
+              - [setTranslationDomain, [admin]]

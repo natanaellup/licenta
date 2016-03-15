@@ -1,3 +1,11 @@
+book:
+    resource: "@BookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin_override:
+    resource: "@AdminOverrideBundle/Resources/config/routing.yml"
+    prefix:   /
+
 framework_extension:
     resource: "@FrameworkExtensionBundle/Resources/config/routing.yml"
     prefix:   /
@@ -14,12 +22,14 @@ admin_area:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
     prefix: /admin
 
+_sonata_admin:
+  resource: .
+  type: sonata_admin
+  prefix: /admin
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-comur_image:
-    resource: "@ComurImageBundle/Resources/config/routing.yml"
-    prefix:   /
+# Liip imagine bundle routing
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -1,0 +1,15 @@
+BookBundle\Entity\Category:
+    type: entity
+    table: book_category
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255

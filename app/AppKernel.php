@@ -20,6 +20,7 @@ class AppKernel extends Kernel
 
             // My bundles
             new UserBundle\UserBundle(),
+            new FrameworkExtensionBundle\FrameworkExtensionBundle(),
 
             // Comunity bundles
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -28,11 +29,10 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new JMS\TranslationBundle\JMSTranslationBundle(),
-            new Comur\ImageBundle\ComurImageBundle(),
             new StaticPagesBundle\StaticPagesBundle(),
-            new FrameworkExtensionBundle\FrameworkExtensionBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new AdminOverrideBundle\AdminOverrideBundle(),
+            new BookBundle\BookBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
