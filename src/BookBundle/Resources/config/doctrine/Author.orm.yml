@@ -26,3 +26,10 @@ BookBundle\Entity\Author:
         active:
             type: boolean
             nullable: false
+    manyToOne:
+        user:
+          targetEntity: UserBundle\Entity\User
+          inversedBy: authors
+          joinColumn:
+              name: user_id
+              referencedColumnName: id

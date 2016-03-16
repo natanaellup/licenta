@@ -1,3 +1,6 @@
 book_bundle.add_author:
     path:     /autor/adaugare
     defaults: { _controller: BookBundle:Author:add }
+book_bundle.edit_author:
+    path:     /autor/editare/{id}
+    defaults: { _controller: BookBundle:Author:edit }

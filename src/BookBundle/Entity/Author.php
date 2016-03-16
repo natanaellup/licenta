@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use UserBundle\Entity\User;
 
 class Author
 {
@@ -65,6 +66,11 @@ class Author
      * @var boolean
      */
     private $active;
+
+    /**
+     * @var User
+     */
+    private $user;
 
     /**
      * @return int
@@ -190,6 +196,25 @@ class Author
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
         return $this;
     }
 
