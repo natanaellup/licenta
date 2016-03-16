@@ -23,3 +23,6 @@ BookBundle\Entity\Author:
             type: string
             nullable: false
             length: 255
+        active:
+            type: boolean
+            nullable: false

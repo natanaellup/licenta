@@ -18,7 +18,11 @@ class UserAdmin extends Admin
     {
         $list->addIdentifier('username')
             ->add('email')
-            ->add('avatarUrl',null,array('template' => 'UserBundle:Admin:avatar_list_field.html.twig'))
+            ->add('avatarUrl',null,array(
+                    'template' => 'AdminOverrideBundle:Admin:avatar_list_field.html.twig',
+                    'sortable' => false
+                )
+            )
             ->add('birthday');
     }
 

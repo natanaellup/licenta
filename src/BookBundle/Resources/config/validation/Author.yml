@@ -1,0 +1,15 @@
+BookBundle\Entity\Author:
+  properties:
+    firstName:
+        - NotBlank:
+            groups: [ Add, Edit]
+    lastName:
+        - NotBlank:
+            groups: [ Add, Edit]
+    image:
+        - NotBlank:
+            groups: [ Add ]
+        - File:
+            maxSize: 8M
+            mimeTypes: [image/jpeg, image/png, image/jpg]
+            groups: [ Add, Edit]

@@ -20,11 +20,18 @@ security:
 
         main:
             pattern: ^/
+
             form_login:
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager
 
+            remember_me:
+                key:      '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+
             logout:       true
+
             anonymous:    true
     
     access_control:

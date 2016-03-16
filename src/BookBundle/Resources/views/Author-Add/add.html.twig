@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets filter='cssrewrite'
+    '@jquery_ui_style'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+    <div id="editbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">{{ 'Add or edit author'|trans }}</div>
+            </div>
+
+            <div style="padding-top:30px" class="panel-body">
+
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                {{ form_start(form, {'method': 'post', 'action': path('book_bundle.add_author'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                {{ form_row (form.firstName, { attr : { class :"form-control" } }) }}
+
+                {{ form_row (form.lastName, { attr : { class :"form-control" } }) }}
+
+                {{ form_row (form.description, { attr : { class :"form-control" } } )}}
+
+                {{ form_row (form.image, { attr: { class :"form-control" }}) }}
+
+                <div class="col-sm-12 controls" style="padding-top:15px">
+                    <input class="form-control btn btn-primary" type="submit" id="_submit" name="_submit"
+                           value="{{ 'Save author'|trans }}"/>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

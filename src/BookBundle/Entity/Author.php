@@ -6,6 +6,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Author
 {
+    const NAME_PATH = 'author_image';
+
+    const IMAGE_DIR = 'uploads/author_image';
+
     /**
      * Author id.
      *
@@ -56,6 +60,13 @@ class Author
     private $oldImageUrl;
 
     /**
+     * Active author?
+     *
+     * @var boolean
+     */
+    private $active;
+
+    /**
      * @return int
      */
     public function getId()
@@ -96,24 +107,6 @@ class Author
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthday()
-    {
-        return $this->birthday;
-    }
-
-    /**
-     * @param \DateTime $birthday
-     * @return Author
-     */
-    public function setBirthday($birthday)
-    {
-        $this->birthday = $birthday;
         return $this;
     }
 
@@ -182,6 +175,27 @@ class Author
         return $this->imageUrl;
     }
 
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     * @return $this
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         if(!is_null($this->firstName) && !is_null($this->lastName)){
