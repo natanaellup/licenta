@@ -1,6 +1,6 @@
 BookBundle\Entity\Category:
     type: entity
-    table: book_category
+    table: categories
     id:
         id:
             type: integer

@@ -20,3 +20,14 @@ services:
               - { name: sonata.admin, manager_type: orm, label: "Author", group: "Book" }
             calls:
               - [setTranslationDomain, [admin]]
+
+    bookbundle.book_admin:
+            class: BookBundle\Admin\BookAdmin
+            arguments:
+              - ~
+              - BookBundle\Entity\Book
+              - ~
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: "Book", group: "Book" }
+            calls:
+              - [setTranslationDomain, [admin]]

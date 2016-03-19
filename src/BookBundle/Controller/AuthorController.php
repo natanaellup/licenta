@@ -3,6 +3,7 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Author;
 use BookBundle\Form\AddAuthorForm;
+use BookBundle\Form\AuthorHandlerForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class AuthorController extends Controller
     public function addAction(Request $request)
     {
         $author = new Author();
-        $form = $this->createForm(new AddAuthorForm(),$author,array('validation_groups' => 'Add'));
+        $form = $this->createForm(new AuthorHandlerForm(),$author,array('validation_groups' => 'Add'));
         $form->handleRequest($request);
 
         if($form->isValid()){
@@ -52,12 +53,12 @@ class AuthorController extends Controller
     {
         $author = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->find($id);
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        dump($user->getId());dump($author->getUser()->getId());dump($user->getId() != $author->getUser()->getId());
+
         if($user->getId() != $author->getUser()->getId()){
             throw new NotFoundHttpException('User-ul nu poate edita acest autor!');
         }
 
-        $form = $this->createForm(new AddAuthorForm(),$author,array('validation_groups' => 'Edit'));
+        $form = $this->createForm(new AuthorHandlerForm(),$author,array('validation_groups' => 'Edit'));
         $form->handleRequest($request);
 
         if($form->isValid()){

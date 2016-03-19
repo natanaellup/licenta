@@ -35,6 +35,9 @@ class AuthorAdmin extends Admin
         return $formBuilder;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('firstName')
@@ -44,6 +47,9 @@ class AuthorAdmin extends Admin
             ->add('active');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('firstName')
@@ -56,6 +62,9 @@ class AuthorAdmin extends Admin
             ->add('active','boolean',array('editable' => true));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('firstName', 'doctrine_orm_callback', array(
@@ -92,6 +101,9 @@ class AuthorAdmin extends Admin
         $uploadService = $this->getConfigurationPool()->getContainer()->get('framework_extension.upload_manager');
         $uploadService->setDocumentUploadDir(Author::IMAGE_DIR);
         $uploadService->setDocumentUrl($object,'getImage','setImage','setImageUrl','getOldImageUrl',Author::NAME_PATH);
+
+        $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
+        $object->setUser($user);
     }
 
     /**

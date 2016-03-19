@@ -1,0 +1,50 @@
+BookBundle\Entity\Book:
+    type: entity
+    table: books
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: text
+            nullable: false
+        imageUrl:
+            type: string
+            nullable: false
+            length: 255
+        documentUrl:
+            type: string
+            nullable: false
+            length: 255
+        active:
+            type: boolean
+            nullable: false
+        addDate:
+            type: datetime
+            nullable: false
+    manyToOne:
+        user:
+            targetEntity: UserBundle\Entity\User
+            inversedBy: books
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+        author:
+            targetEntity: BookBundle\Entity\Author
+            inversedBy: books
+            joinColumn:
+                name: author_id
+                referencedColumnName: id
+        category:
+            targetEntity: BookBundle\Entity\Category
+            inversedBy: books
+            joinColumn:
+                name: category_id
+                referencedColumnName: id

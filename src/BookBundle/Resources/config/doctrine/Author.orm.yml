@@ -1,6 +1,6 @@
 BookBundle\Entity\Author:
     type: entity
-    table: author
+    table: authors
     id:
         id:
             type: integer
