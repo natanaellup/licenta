@@ -23,7 +23,7 @@ class UserAdmin extends Admin
                     'sortable' => false
                 )
             )
-            ->add('birthday');
+            ->add('birthday', null, array('format' => 'Y-M-d'));
     }
 
     /**

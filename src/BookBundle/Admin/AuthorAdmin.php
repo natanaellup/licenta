@@ -68,7 +68,7 @@ class AuthorAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('firstName', 'doctrine_orm_callback', array(
-                                'label' => 'Business name or DBA',
+                                'label' => 'First Name or Last Name',
                                 'callback' => function ($queryBuilder, $alias, $field, $value) {
                                     if (empty($value['value'])) {
                                         return false;
