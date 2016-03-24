@@ -17,3 +17,8 @@ services:
         tags:
             - { name: form.type_extension, alias: file }
 
+    framework_extension.form.extension.file_type:
+        class: FrameworkExtensionBundle\Form\Extension\DocumentFileExtension
+        tags:
+            - { name: form.type_extension, alias: file }
+

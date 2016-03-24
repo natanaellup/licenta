@@ -26,7 +26,7 @@ class BookAdmin extends Admin
         $form->add('title')
             ->add('description')
             ->add('image','file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
-            ->add('document','file',array('image_path' => 'documentUrl', 'image_style' => 'avatar_profile_edit'))
+            ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
             ->add('category')
             ->add('author')
             ->add('active');

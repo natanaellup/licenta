@@ -54,7 +54,9 @@ class AuthorController extends Controller
         $author = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->find($id);
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if($user->getId() != $author->getUser()->getId()){
+        if(is_null($author)){
+            throw new NotFoundHttpException('User-ul nu exista!');
+        }elseif(!is_null($user) && $user->getId() != $author->getUser()->getId()){
             throw new NotFoundHttpException('User-ul nu poate edita acest autor!');
         }
 

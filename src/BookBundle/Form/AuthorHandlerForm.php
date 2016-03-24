@@ -11,9 +11,8 @@ class AuthorHandlerForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
+            ->add('title')
             ->add('lastName', 'text')
-            ->add('description', 'textarea')
             ->add('image', 'file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'));
     }
 
@@ -22,7 +21,7 @@ class AuthorHandlerForm extends AbstractType
      */
     public function getName()
     {
-        return 'add_author';
+        return 'handle_author';
     }
 
     /**

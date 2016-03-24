@@ -17,7 +17,11 @@
         {% endif %}
     {% endif %}
     {{ block ('form_widget') }}
-        
+
+    {% if file_path is not null and file_name is not null%}
+        <i>{{'Documentul deja existent:'|trans}} <a target="_blank" href="{{ asset(file_path) }}">{{ file_name }}</a></i>
+    {% endif %}
+
     {% endspaceless %}
 {% endblock %}
 
