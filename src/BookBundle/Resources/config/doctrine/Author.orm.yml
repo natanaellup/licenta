@@ -33,3 +33,8 @@ BookBundle\Entity\Author:
           joinColumn:
               name: user_id
               referencedColumnName: id
+    manyToMany:
+        books:
+          targetEntity: BookBundle\Entity\Book
+          mappedBy: authors
+          nullable: true

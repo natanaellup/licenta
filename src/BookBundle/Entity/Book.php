@@ -2,6 +2,7 @@
 
 namespace BookBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use UserBundle\Entity\User;
 
@@ -11,7 +12,7 @@ class Book
 
     const IMAGE_DIR_BOOK = 'uploads/book/image';
 
-    const NAME_PATH_DOCUMENT = 'book_image';
+    const NAME_PATH_DOCUMENT = 'book_document';
 
     const DOCUMENT_DIR_BOOK = 'uploads/book/document';
 
@@ -33,9 +34,9 @@ class Book
     private $description;
 
     /**
-     * @var Author
+     * @var Author[]
      */
-    private $author;
+    private $authors;
 
     /**
      * @var Category
@@ -88,6 +89,14 @@ class Book
     private $addDate;
 
     /**
+     * Book constructor.
+     */
+    public function __construct()
+    {
+        $this->authors = new ArrayCollection();
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -134,18 +143,48 @@ class Book
     /**
      * @return Author
      */
-    public function getAuthor()
+    public function getAuthors()
     {
-        return $this->author;
+        return $this->authors;
     }
 
     /**
      * @param Author $author
+     * @param bool $updateRelation
+     * @return $this
+     */
+    public function addAuthor(Author $author, $updateRelation = true)
+    {
+        $this->authors[] = $author;
+        if($updateRelation){
+            $author->addBook($this,false);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Author $author
+     * @param bool $updateRelation
+     * @return $this
+     */
+    public function removeAuthor(Author $author, $updateRelation = true)
+    {
+        $this->authors->removeElement($author);
+        if($updateRelation){
+            $author->removeBook($this,false);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Author $authors
      * @return Book
      */
-    public function setAuthor($author)
+    public function setAuthor($authors)
     {
-        $this->author = $author;
+        $this->authors = $authors;
         return $this;
     }
 

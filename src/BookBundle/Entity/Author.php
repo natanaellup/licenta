@@ -2,6 +2,7 @@
 
 namespace BookBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use UserBundle\Entity\User;
 
@@ -71,6 +72,19 @@ class Author
      * @var User
      */
     private $user;
+
+    /**
+     * @var Book[]
+     */
+    private $books;
+
+    /**
+     * Author constructor.
+     */
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -216,6 +230,54 @@ class Author
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Book[]|ArrayCollection
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @param Book $book
+     * @param $updateRelation
+     * @return $this
+     */
+    public function addBook(Book $book, $updateRelation)
+    {
+        $this->books[] = $book;
+        if($updateRelation){
+            $book->addAuthor($this,false);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Book $book
+     * @param $updateRelation
+     * @return $this
+     */
+    public function removeBook(Book $book, $updateRelation)
+    {
+        $this->books->removeElement($book);
+        if($updateRelation){
+            $book->removeAuthor($this,false);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ArrayCollection $books
+     * @return ArrayCollection
+     */
+    public function setBooks(ArrayCollection $books)
+    {
+        $this->books = $books;
+        return $books;
     }
 
     /**

@@ -23,12 +23,19 @@ class BookAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $form)
     {
+        $em = $this->modelManager->getEntityManager('BookBundle\Entity\Author');
+
+        $query = $em->createQueryBuilder('a')
+            ->select('a')
+            ->from('BookBundle:Author', 'a')
+            ->where('a.active = 1');
+
         $form->add('title')
             ->add('description')
             ->add('image','file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
             ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
             ->add('category')
-            ->add('author')
+            ->add('authors','sonata_type_model', array('by_reference' => false, 'multiple' => true, 'query' => $query))
             ->add('active');
     }
 

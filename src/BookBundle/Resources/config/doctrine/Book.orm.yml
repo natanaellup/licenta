@@ -36,15 +36,23 @@ BookBundle\Entity\Book:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-        author:
-            targetEntity: BookBundle\Entity\Author
-            inversedBy: books
-            joinColumn:
-                name: author_id
-                referencedColumnName: id
         category:
             targetEntity: BookBundle\Entity\Category
             inversedBy: books
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+    manyToMany:
+        authors:
+            targetEntity: BookBundle\Entity\Author
+            inversedBy: books
+            nullable: true
+            type: integer
+            joinTable:
+                name: book_author
+                joinColumns:
+                    id_book:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    id_author:
+                      referencedColumnName: id
