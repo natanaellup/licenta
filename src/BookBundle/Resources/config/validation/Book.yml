@@ -1,0 +1,28 @@
+BookBundle\Entity\Book:
+  properties:
+    title:
+        - NotBlank:
+            groups: [ Add, Edit]
+    category:
+        - NotBlank:
+            groups: [ Add, Edit]
+    image:
+        - NotBlank:
+            groups: [ Add ]
+        - File:
+            maxSize: 8M
+            mimeTypes: [image/jpeg, image/png, image/jpg]
+            groups: [ Add, Edit]
+    document:
+        - NotBlank:
+            groups: [ Add ]
+        - File:
+            maxSize: 8M
+            mimeTypes: [ application/pdf ]
+            groups: [ Add, Edit ]
+    authors:
+        - NotBlank:
+            groups: [ Add, Edit ]
+        - Count:
+            min: 1
+            groups: [ Add, Edit ]

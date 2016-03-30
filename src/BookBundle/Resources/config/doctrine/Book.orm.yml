@@ -14,7 +14,7 @@ BookBundle\Entity\Book:
             length: 255
         description:
             type: text
-            nullable: false
+            nullable: true
         imageUrl:
             type: string
             nullable: false

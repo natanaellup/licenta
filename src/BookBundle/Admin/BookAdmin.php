@@ -11,11 +11,37 @@ use BookBundle\Entity\Book as BookEntity;
 class BookAdmin extends Admin
 {
     /**
+     * @inheritdoc
+     */
+    public function getFormBuilder()
+    {
+        $this->formOptions['data_class'] = $this->getClass();
+
+        $options = $this->formOptions;
+
+        if(!$this->getSubject() || is_null($this->getSubject()->getId())){
+            $options['validation_groups'] = 'Add';
+        }else{
+            $options['validation_groups'] = 'Edit';
+        }
+
+        $formBuilder = $this->getFormContractor()->getFormBuilder( $this->getUniqid(), $options);
+
+        $this->defineFormBuilder($formBuilder);
+
+        return $formBuilder;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function configureListFields(ListMapper $list)
     {
-        $list->addIdentifier('title');
+        $list->addIdentifier('title')
+            ->add('authors')
+            ->add('imageUrl',null,array( 'template' => 'AdminOverrideBundle:Admin:avatar_list_field.html.twig', 'sortable' => false))
+            ->add('document',null,array('template' => 'BookBundle:Admin:book_document_field_list.html.twig'))
+            ->add('active','boolean',array('sortable => true','editable' => true));
     }
 
     /**
@@ -35,7 +61,8 @@ class BookAdmin extends Admin
             ->add('image','file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
             ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
             ->add('category')
-            ->add('authors','sonata_type_model', array('by_reference' => false, 'multiple' => true, 'query' => $query))
+            ->add('authors','sonata_type_model', array('by_reference' => false, 'multiple' => true, 'query' => $query,
+                            'choice_translation_domain' => false))
             ->add('active');
     }
 
@@ -44,7 +71,9 @@ class BookAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('title');
+        $datagridMapper->add('title')
+                ->add('authors')
+                ->add('active');
     }
 
     /**

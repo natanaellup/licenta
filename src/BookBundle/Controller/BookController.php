@@ -64,7 +64,7 @@ class BookController extends Controller
             throw new NotFoundHttpException('User-ul nu poate edita acest autor!');
         }
 
-        $bookForm = $this->createForm(new BookHandlerForm(),$book,array('validation_groups' => 'Add'));
+        $bookForm = $this->createForm(new BookHandlerForm(),$book,array('validation_groups' => 'Edit'));
         $bookForm->handleRequest($request);
 
         if($bookForm->isValid()){
