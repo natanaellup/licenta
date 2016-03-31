@@ -79,4 +79,29 @@ class AuthorController extends Controller
 
         return $this->render('BookBundle:Author:edit.html.twig',array('form' => $form->createView()));
     }
+
+    /**
+     * @param Request $request
+     */
+    public function listAction(Request $request)
+    {
+
+    }
+
+    /**
+     * @param Request $request
+     * @param integer $id
+     *
+     * @return Response
+     */
+    public function detailsAction(Request $request, $id)
+    {
+        $author = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->find($id);
+
+        if(is_null($author)){
+            throw new NotFoundHttpException('Autorul nu exista!');
+        }
+
+        return $this->render('BookBundle:Author:details.html.twig',array('author' => $author));
+    }
 }

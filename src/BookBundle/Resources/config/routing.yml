@@ -10,3 +10,9 @@ book_bundle.add_book:
 book_bundle.edit_book:
     path: /carte/editare/{id}
     defaults: { _controller: BookBundle:Book:edit }
+book_bundle.author_details:
+    path: /autor/{slug_name}/{id}
+    defaults: { _controller: BookBundle:Author:details }
+book_bundle.author_list:
+    path: /autor
+    defaults: { _controller: BookBundle:Author:list }
