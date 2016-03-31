@@ -82,10 +82,14 @@ class AuthorController extends Controller
 
     /**
      * @param Request $request
+     *
+     * @return Response
      */
     public function listAction(Request $request)
     {
+        $authors = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->getAllActiveUsers();
 
+        return $this->render('BookBundle:Author:list.html.twig', array('authors' => $authors));
     }
 
     /**
@@ -98,7 +102,7 @@ class AuthorController extends Controller
     {
         $author = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->find($id);
 
-        if(is_null($author)){
+        if(is_null($author) || !($author->isActive())){
             throw new NotFoundHttpException('Autorul nu exista!');
         }
 

@@ -200,7 +200,7 @@ class Author
      */
     public function isActive()
     {
-        return $this->active;
+        return (boolean) $this->active;
     }
 
     /**

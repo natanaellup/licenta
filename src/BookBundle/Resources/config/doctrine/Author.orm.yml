@@ -1,6 +1,7 @@
 BookBundle\Entity\Author:
     type: entity
     table: authors
+    repositoryClass: BookBundle\Repository\AuthorRepository
     id:
         id:
             type: integer
