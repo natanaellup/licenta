@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
 {
-
+    //TODO: get all active book for each categories
     public function listAction(Request $request)
     {
         $categories = $this->getDoctrine()->getRepository('BookBundle:Category')->findAll();

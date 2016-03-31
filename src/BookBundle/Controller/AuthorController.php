@@ -79,7 +79,7 @@ class AuthorController extends Controller
 
         return $this->render('BookBundle:Author:edit.html.twig',array('form' => $form->createView()));
     }
-
+    //TODO: get all active books for each authors
     /**
      * @param Request $request
      *
