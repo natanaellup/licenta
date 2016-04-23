@@ -1,5 +1,20 @@
 {% extends "base.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block content %}
-{% include "UserBundle:Registration:register_content.html.twig" %}
+
+    <div class="span9">
+        {#<h3>Login</h3>#}
+        {#{% if error %}#}
+            {#<div class="alert alert-block alert-error fade in">#}
+                {#<button type="button" class="close" data-dismiss="alert">×</button>#}
+                {#<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+            {#</div>#}
+        {#{% endif %}#}
+        <div class="well">
+            {{ include('@User/Registration/register_form.html.twig') }}
+        </div>
+    </div>
+
 {% endblock content %}

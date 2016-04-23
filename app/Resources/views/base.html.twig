@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
 
-        {% block stylesheet_libs %}
-            {% stylesheets filter='cssrewrite' output='compiled/css/libs.css'
-            '@bootstrap' %}
-            <link rel="stylesheet" href="{{ asset_url }}"/>
-            {% endstylesheets %}
-        {% endblock %}
+    {% block stylesheet_libs %}
+        {% stylesheets filter='cssrewrite' output='compiled/css/libs.css'
+        '@bootstrap_min'
+        '@bootstrap_responsive'
+        '@font_awesome'
+        '@css_prettify' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
 
-        {% block stylesheets %}
-            {% stylesheets filter='cssrewrite' output='compiled/css/style.css'
-            'css/style.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}"/>
-            {% endstylesheets %}
-        {% endblock %}
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite' output='compiled/css/style.css'
+        'css/style.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-    <div class="container">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div>
 
-        {% block admin_bar %}
-            
-        {% endblock %}
+    {% block admin_bar %}
 
-        {% block content %}{% endblock %}
+    {% endblock %}
+
+    {% block header %}
+        {{ include ('header.html.twig') }}
+    {% endblock %}
+    <div id="mainBody">
+        <div class="container">
+            <div class="row">
+                {{ include('sidebar.html.twig') }}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
     </div>
-        {% block javascript_libs %}
-            {% javascripts output='compiled/js/libs.js' filter="?jsqueeze"
-                '@jquery'
-            %}
-            <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+    {% block footer %}
+        {{ include ('footer.html.twig') }}
+    {% endblock %}
+</div>
+{% block javascript_libs %}
+    {% javascripts output='compiled/js/libs.js' filter="?jsqueeze"
+    '@jquery'
+    '@bootstrap_js'
+    '@js_prettify'
+    '@bootshop'
+    '@jquery_lightbox' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>

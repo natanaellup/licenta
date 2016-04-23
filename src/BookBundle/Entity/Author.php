@@ -133,6 +133,14 @@ class Author
     /**
      * @return string
      */
+    public function getFullName()
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -278,6 +286,25 @@ class Author
     {
         $this->books = $books;
         return $books;
+    }
+
+    /**
+     * Get active books.
+     *
+     * @return Book|mixed|null
+     */
+    public function getActiveBooks()
+    {
+        $activeBooks = new ArrayCollection();
+
+        foreach($this->books as $book)
+        {
+            if($book->isActive()){
+                $activeBooks->add($book);
+            }
+        }
+
+        return $book;
     }
 
     /**

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+     <div class="content">
+        <h1 class="center">Lista autorilor</h1>
+        <div class="free-text-form">
+            {{ include('BookBundle:Form:free_text_form.html.twig', { 'form': freeTextForm }) }}
+        </div>
+
+
+         {#{% for author in authors %}#}
+                {#{% set author_url = path('book_bundle.author_details', { id: author.id, slug_name: author.getFullName()|sonata_slugify}) %}#}
+                {#<div class="author">#}
+                    {#<a href="{{ author_url }}">#}
+                        {#<div class="author-photo">#}
+                            {#<img src="{{ asset(author.getImageUrl())| imagine_filter('author_image_list') }}">#}
+                        {#</div>#}
+                        {#<div class="author-information">#}
+                            {#<div class="name">#}
+                                {#<h4>{{ author.getFirstName() }} {{ author.getLastName() }}</h4>#}
+                            {#</div>#}
+                            {#<div class="number-of-books">#}
+                                {#<p>25 carti</p>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</a>#}
+                {#</div>#}
+         {#{% endfor %}#}
+     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+    {% javascripts
+    '@BookBundle/Resources/public/js/author_list/list_controller.js'
+    %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}

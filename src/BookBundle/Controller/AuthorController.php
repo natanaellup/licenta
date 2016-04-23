@@ -4,6 +4,8 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Author;
 use BookBundle\Form\AddAuthorForm;
 use BookBundle\Form\AuthorHandlerForm;
+use BookBundle\Form\SearchAuthorForm;
+use BookBundle\Form\SearchFreeTextForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +31,7 @@ class AuthorController extends Controller
             $author = $form->getData();
 
             $author->setActive(false);
-            $author->setUser($this->get('security.token_storage')->getToken()->getUser());
+            $author->setUser($this->get('security.context')->getToken()->getUser());
             $uploadService = $this->get('framework_extension.upload_manager');
             $uploadService->setDocumentUploadDir(Author::IMAGE_DIR);
             $uploadService->setDocumentUrl($author,'getImage','setImage','setImageUrl','getOldImageUrl',Author::NAME_PATH);
@@ -85,11 +87,20 @@ class AuthorController extends Controller
      *
      * @return Response
      */
-    public function listAction(Request $request)
+    public function listPageAction(Request $request)
     {
-        $authors = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->getAllActiveUsers();
+        $form = $this->createForm(new SearchFreeTextForm());
 
-        return $this->render('BookBundle:Author:list.html.twig', array('authors' => $authors));
+        return $this->render('BookBundle:Author:list_page.html.twig', array('freeTextForm' => $form->createView()));
+    }
+
+    /**
+     * For Ajax Request.
+     * @param Request $request
+     */
+    public function listContentAction(Request $request)
+    {
+
     }
 
     /**
@@ -100,7 +111,7 @@ class AuthorController extends Controller
      */
     public function detailsAction(Request $request, $id)
     {
-        $author = $this->getDoctrine()->getEntityManager()->getRepository('BookBundle:Author')->find($id);
+        $author = $this->getDoctrine()->getManager()->getRepository('BookBundle:Author')->find($id);
 
         if(is_null($author) || !($author->isActive())){
             throw new NotFoundHttpException('Autorul nu exista!');

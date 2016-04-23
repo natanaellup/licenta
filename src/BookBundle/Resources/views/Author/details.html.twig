@@ -1,5 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {{ dump(author) }}
+    <div class="author-page-content">
+
+        <div class="author-information">
+            <div class="image">
+                <img src="{{ asset(author.getImageUrl) }}">
+            </div>
+            <div class="author-description">
+                <div class="author-name">
+                    <h1>{{ author.getFullName() }}</h1>
+                </div>
+
+                <div class="description">
+                    <p>{{ author.getDescription() }}</p>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+
+
+    </div>
 {% endblock %}

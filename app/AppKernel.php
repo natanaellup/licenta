@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             // My bundles
             new UserBundle\UserBundle(),
             new FrameworkExtensionBundle\FrameworkExtensionBundle(),
+            new AdminOverrideBundle\AdminOverrideBundle(),
+            new BookBundle\BookBundle(),
 
             // Comunity bundles
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -30,9 +32,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new StaticPagesBundle\StaticPagesBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new AdminOverrideBundle\AdminOverrideBundle(),
-            new BookBundle\BookBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

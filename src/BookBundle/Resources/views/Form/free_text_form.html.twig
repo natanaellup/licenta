@@ -1,0 +1,11 @@
+
+{{ form_start(form, {'method': 'post', 'attr': {'novalidate' : 'novalidate', id: 'form-search'}}) }}
+
+<div class="col-md-3">
+    {{ form_widget (form.freeText, { attr : { class :"form-control", id:"free-text" } }) }}
+</div>
+<div class="col-md-3 controls">
+    <input class="form-control btn btn-primary" class="search" type="submit" id="_submit" name="_submit"
+           value="{{ 'Cauta autor'|trans }}"/>
+</div>
+{{ form_end(form) }}

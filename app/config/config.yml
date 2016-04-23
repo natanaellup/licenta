@@ -35,6 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        fos_csrf_provider: "@form.csrf_provider"
     form:
             resources:
                 - 'SonataCoreBundle:Form:datepicker.html.twig'
@@ -48,18 +50,34 @@ assetic:
     filters:
         cssrewrite: ~
     assets:
-        bootstrap:
+        bootstrap_responsive:
             inputs:
-               - libs/css/bootstrap.css
-        jquery_ui_style:
+                - libs/css/bootstrap-responsive.min.css
+        bootstrap_min:
             inputs:
-               - libs/css/jquery-ui.min.css
+                - libs/css/bootstrap.min.css
+        css_prettify:
+            inputs:
+                - libs/css/prettify.css
+        font_awesome:
+            inputs:
+                - libs/css/font-awesome.css
         jquery:
             inputs:
-                - libs/js/jquery-1.11.0.min.js
-        jquery_ui:
+                - libs/js/jquery.js
+        bootshop:
             inputs:
-                - libs/js/jquery-ui.min.js
+                - libs/js/bootshop.js
+        bootstrap_js:
+            inputs:
+                - libs/js/bootstrap.min.js
+        jquery_lightbox:
+            inputs:
+                - libs/js/jquery.lightbox-0.5.js
+        js_prettify:
+            inputs:
+                - libs/js/prettify.js
+
 
         #closure:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
@@ -145,5 +163,8 @@ liip_imagine:
             filters:
                 thumbnail: { size: [200, 200], mode: outbound }
         admin_show_avatar:
-                    filters:
-                        thumbnail: { size: [45, 45], mode: outbound }
+            filters:
+                thumbnail: { size: [45, 45], mode: outbound }
+        author_image_list:
+            filters:
+                thumbnail: { size: [175, 175], mode: outbound }

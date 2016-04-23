@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 
 class AuthorRepository extends EntityRepository
 {
-    public function getAllActiveUsers()
+    public function getAllActiveAuthors()
     {
         $qb = $this->createQueryBuilder('a')
             ->where('a.active = 1');

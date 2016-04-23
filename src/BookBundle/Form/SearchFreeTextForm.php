@@ -2,19 +2,16 @@
 
 namespace BookBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AuthorHandlerForm extends AbstractType
+class SearchFreeTextForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('firstName')
-            ->add('lastName', 'text')
-            ->add('description')
-            ->add('image', 'file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'));
+        $builder->add('freeText');
     }
 
     /**
@@ -22,7 +19,7 @@ class AuthorHandlerForm extends AbstractType
      */
     public function getName()
     {
-        return 'handle_author';
+        return 'search_free_text';
     }
 
     /**
@@ -31,7 +28,7 @@ class AuthorHandlerForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BookBundle\Entity\Author',
+            'data_class' => 'BookBundle\Entity\FreeSearch',
         ));
     }
 }
