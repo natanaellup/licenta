@@ -13,3 +13,7 @@ BookBundle\Entity\Category:
             type: string
             nullable: false
             length: 255
+    oneToMany:
+        books:
+            targetEntity: BookBundle\Entity\Book
+            mappedBy: category
