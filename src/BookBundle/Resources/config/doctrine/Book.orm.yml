@@ -29,6 +29,16 @@ BookBundle\Entity\Book:
         addDate:
             type: datetime
             nullable: false
+        featured:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        mainFeatured:
+            type: boolean
+            nullable: true
+            options:
+                default: false
     manyToOne:
         user:
             targetEntity: UserBundle\Entity\User

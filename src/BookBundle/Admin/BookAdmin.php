@@ -56,14 +56,21 @@ class BookAdmin extends Admin
             ->from('BookBundle:Author', 'a')
             ->where('a.active = 1');
 
-        $form->add('title')
+        $form
+            ->with('Informatii despre carte', array('class' => 'col-md-6'))
+            ->add('title')
             ->add('description')
             ->add('image','file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
             ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
             ->add('category')
             ->add('authors','sonata_type_model', array('by_reference' => false, 'multiple' => true, 'query' => $query,
                             'choice_translation_domain' => false))
-            ->add('active');
+            ->end()
+            ->with('Starea cartii', array('class' => 'col-md-6'))
+            ->add('active')
+            ->add('featured', null, array('label' => 'Carte recomandata'))
+            ->add('mainFeatured', null, array('label' => 'Carte principala'))
+            ->end();
     }
 
     /**
