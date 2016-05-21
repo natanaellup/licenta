@@ -144,11 +144,10 @@ sonata_admin:
 
 
 sonata_block:
-    default_contexts: [cms]
+    default_contexts: [book_store]
     blocks:
         sonata.admin.block.admin_list:
-            contexts: [admin]
-
+            contexts:   [admin]
 
 liip_imagine:
     resolvers:

@@ -1,6 +1,21 @@
 {% extends "base.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
-    {% include "UserBundle:Resetting:request_content.html.twig" %}
+
+    <div class="span9">
+        <h3>Schimbare parola</h3>
+        {% if invalid_username is defined %}
+            <div class="alert alert-block alert-error fade in">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <div> <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p></div>
+            </div>
+        {% endif %}
+
+        <div class="well">
+            {% include('@User/Resetting/request_content.html.twig') %}
+        </div>
+    </div>
+
 {% endblock content %}

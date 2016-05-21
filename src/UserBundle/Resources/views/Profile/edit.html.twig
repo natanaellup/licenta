@@ -2,19 +2,9 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{#{% block stylesheets %}#}
-    {#{{ parent() }}#}
-
-    {#{% stylesheets filter='cssrewrite'#}
-    {#'@jquery_ui_style'#}
-    {#%}#}
-    {#<link rel="stylesheet" href="{{ asset_url }}"/>#}
-    {#{% endstylesheets %}#}
-{#{% endblock %}#}
-
 {% block content %}
     <div class="span9">
-        <h3>Inregistrare</h3>
+        <h3>Editarea informatiilor</h3>
         <div class="well">
             {{ include('@User/Profile/edit_content.html.twig') }}
         </div>

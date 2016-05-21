@@ -1,5 +1,10 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-{% include "UserBundle:Resetting:reset_content.html.twig" %}
+    <div class="span9">
+        <h3>Schimba parola</h3>
+        <div class="well">
+            {% include "UserBundle:Resetting:reset_content.html.twig" %}
+        </div>
+    </div>
 {% endblock content %}
