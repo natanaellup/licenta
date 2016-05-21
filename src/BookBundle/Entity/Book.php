@@ -89,6 +89,16 @@ class Book
     private $addDate;
 
     /**
+     * @var boolean
+     */
+    private $featured;
+
+    /**
+     * @var boolean
+     */
+    private $mainFeatured;
+
+    /**
      * Book constructor.
      */
     public function __construct()
@@ -350,6 +360,44 @@ class Book
     public function setAddDate($addDate)
     {
         $this->addDate = $addDate;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFeatured()
+    {
+        return $this->featured;
+    }
+
+    /**
+     * @param $featured
+     * @return $this
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMainFeatured()
+    {
+        return $this->mainFeatured;
+    }
+
+    /**
+     * @param $mainFeatured
+     * @return $this
+     */
+    public function setMainFeatured($mainFeatured)
+    {
+        $this->mainFeatured = $mainFeatured;
+
         return $this;
     }
 
