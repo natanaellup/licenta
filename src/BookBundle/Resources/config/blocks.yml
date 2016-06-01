@@ -1,0 +1,9 @@
+services:
+    books.block.category:
+        class: BookBundle\Block\CategoryBlock
+        arguments:
+            - campaigns.block.merchant_campaigns
+            - @templating
+            - @doctrine
+        tags:
+            - { name: sonata.block }

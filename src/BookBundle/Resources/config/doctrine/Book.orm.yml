@@ -46,8 +46,8 @@ BookBundle\Entity\Book:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-        category:
-            targetEntity: BookBundle\Entity\Category
+        subcategory:
+            targetEntity: BookBundle\Entity\Subcategory
             inversedBy: books
             joinColumn:
                 name: category_id

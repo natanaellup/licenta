@@ -14,6 +14,7 @@ BookBundle\Entity\Category:
             nullable: false
             length: 255
     oneToMany:
-        books:
-            targetEntity: BookBundle\Entity\Book
+        subcategories:
+            targetEntity: BookBundle\Entity\Subcategory
             mappedBy: category
+

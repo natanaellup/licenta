@@ -1,0 +1,25 @@
+BookBundle\Entity\Subcategory:
+    type: entity
+    table: subcategories
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+    oneToMany:
+        books:
+            targetEntity: BookBundle\Entity\Book
+            mappedBy: subcategory
+    manyToOne:
+        category:
+            targetEntity: BookBundle\Entity\Category
+            inversedBy: subcategories
+            joinColumn:
+                name: category_id
+                referencedColumnName: id

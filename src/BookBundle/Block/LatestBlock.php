@@ -33,9 +33,9 @@ class LatestBlock extends BaseBlockService
 
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'template' => 'BookBundle:Block:categories_block.html.twig'
-        ));
+//        $resolver->setDefaults(array(
+//            'template' => 'BookBundle:Block:categories_block.html.twig'
+//        ));
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)

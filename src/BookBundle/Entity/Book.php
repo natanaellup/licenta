@@ -39,9 +39,9 @@ class Book
     private $authors;
 
     /**
-     * @var Category
+     * @var Subcategory
      */
-    private $category;
+    private $subcategory;
 
     /**
      * @var UploadedFile
@@ -199,20 +199,20 @@ class Book
     }
 
     /**
-     * @return Category
+     * @return Subcategory
      */
-    public function getCategory()
+    public function getSubcategory()
     {
-        return $this->category;
+        return $this->subcategory;
     }
 
     /**
-     * @param Category $category
+     * @param Subcategory $subcategory
      * @return Book
      */
-    public function setCategory($category)
+    public function setSubcategory($subcategory)
     {
-        $this->category = $category;
+        $this->subcategory = $subcategory;
         return $this;
     }
 

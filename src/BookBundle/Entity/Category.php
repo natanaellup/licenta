@@ -12,26 +12,26 @@ class Category
      *
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * Category name.
      *
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var ArrayCollection
      */
-    private $books;
+    protected $subcategories;
 
     /**
      * Category constructor.
      */
     public function __construct()
     {
-        $this->books =  new ArrayCollection();
+        $this->subcategories =  new ArrayCollection();
     }
 
     /**
@@ -68,23 +68,23 @@ class Category
     }
 
     /**
-     * @param $book
+     * @param $subcategory
      * @return $this
      */
-    public function addBook($book)
+    public function addSubcategory($subcategory)
     {
-        $this->books->add($book);
+        $this->subcategories->add($subcategory);
 
         return $this;
     }
 
     /**
-     * @param $book
+     * @param $subcategory
      * @return $this
      */
-    public function removeBook($book)
+    public function removeSubcategory($subcategory)
     {
-        $this->books->removeElement($book);
+        $this->subcategories->removeElement($subcategory);
 
         return $this;
     }
@@ -92,38 +92,20 @@ class Category
     /**
      * @return ArrayCollection
      */
-    public function getBooks()
+    public function getSubcategories()
     {
-        return $this->books;
+        return $this->subcategories;
     }
 
     /**
-     * @param $books
+     * @param $subcategories
      * @return $this
      */
-    public function setBooks($books)
+    public function setSubcategories($subcategories)
     {
-        $this->books = $books;
+        $this->subcategories = $subcategories;
 
         return $this;
-    }
-
-    /**
-     * Get number of active books.
-     *
-     * @return int
-     */
-    public function getNoActiveBooks()
-    {
-        $count = 0;
-
-        foreach($this->books as $book){
-            if($book->isActive()){
-                $count++;
-            }
-        }
-
-        return $count;
     }
 
     /**
