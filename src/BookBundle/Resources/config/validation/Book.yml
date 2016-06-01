@@ -3,7 +3,7 @@ BookBundle\Entity\Book:
     title:
         - NotBlank:
             groups: [ Add, Edit]
-    category:
+    subcategory:
         - NotBlank:
             groups: [ Add, Edit]
     image:

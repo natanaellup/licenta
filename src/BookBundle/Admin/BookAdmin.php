@@ -62,7 +62,7 @@ class BookAdmin extends Admin
             ->add('description')
             ->add('image','file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
             ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
-            ->add('category')
+            ->add('subcategory','sonata_type_model_list')
             ->add('authors','sonata_type_model', array('by_reference' => false, 'multiple' => true, 'query' => $query,
                             'choice_translation_domain' => false))
             ->end()

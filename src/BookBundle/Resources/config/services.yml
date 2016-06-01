@@ -9,6 +9,7 @@ services:
           - { name: sonata.admin, manager_type: orm, label: "Category", group: "Book" }
         calls:
           - [setTranslationDomain, [admin]]
+          - [addChild, ['@bookbundle.subcategory_admin']]
 
     bookbundle.author_admin:
             class: BookBundle\Admin\AuthorAdmin
@@ -29,5 +30,16 @@ services:
               - ~
             tags:
               - { name: sonata.admin, manager_type: orm, label: "Book", group: "Book" }
+            calls:
+              - [setTranslationDomain, [admin]]
+
+    bookbundle.subcategory_admin:
+            class: BookBundle\Admin\SubcategoryAdmin
+            arguments:
+              - ~
+              - BookBundle\Entity\Subcategory
+              - ~
+            tags:
+              - { name: sonata.admin, manager_type: orm, show_in_dashboard: false}
             calls:
               - [setTranslationDomain, [admin]]

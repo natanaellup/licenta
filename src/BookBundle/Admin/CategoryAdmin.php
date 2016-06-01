@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Knp\Menu\ItemInterface;
+use Sonata\AdminBundle\Admin\AdminInterface;
 
 class CategoryAdmin extends Admin
 {
@@ -40,5 +42,27 @@ class CategoryAdmin extends Admin
     protected function configureDataGridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('name');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSideMenu(ItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $elementId = $admin->getSubject()->getId();
+
+        $menu->addChild('Categoria curenta',
+            $admin->generateMenuUrl('edit', array('id' => $elementId))
+        );
+
+        $menu->addChild('Subcategorii', $admin->generateMenuUrl(
+            'bookbundle.subcategory_admin.list', array('id' => $elementId)
+        ));
     }
 }
