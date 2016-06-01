@@ -50,7 +50,7 @@ BookBundle\Entity\Book:
             targetEntity: BookBundle\Entity\Subcategory
             inversedBy: books
             joinColumn:
-                name: category_id
+                name: subcategory_id
                 referencedColumnName: id
     manyToMany:
         authors:
