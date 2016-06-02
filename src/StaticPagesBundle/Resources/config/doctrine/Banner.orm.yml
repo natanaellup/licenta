@@ -1,0 +1,19 @@
+StaticPagesBundle\Entity\Banner:
+    type: entity
+    table: banners
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        imageUrl:
+            nullable: false
+            type: string
+        active:
+            nullable: false
+            type: boolean
+        link:
+            nullable: false
+            type: string

@@ -1,0 +1,14 @@
+StaticPagesBundle\Entity\Banner:
+  properties:
+    link:
+        - NotBlank:
+            groups: [ Add, Edit]
+        - Url:
+            groups: [ Add, Edit]
+    image:
+        - NotBlank:
+            groups: [ Add ]
+        - File:
+            maxSize: 8M
+            mimeTypes: [image/jpeg, image/png, image/jpg]
+            groups: [ Add, Edit]
