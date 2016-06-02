@@ -47,11 +47,13 @@ class CategoryBlock extends BaseBlockService
         }
 
         $noActiveBooks = array();
-
         foreach($categories as $category){
-            $noActiveBooks[$category->getId()] = $category->getNoActiveBooks();
+            foreach($category->getSubcategories() as $subcategory){
+                $noActiveBooks[$subcategory->getId()] = $subcategory->getNoActiveBooks();
+            }
         }
 
-        return $this->renderResponse($blockContext->getTemplate(), array('categories' => $categories, 'noActiveBooks' => $noActiveBooks ), $response);
+        return $this->renderResponse($blockContext->getTemplate(), array('categories' => $categories,
+            'noActiveBooks' => $noActiveBooks ), $response);
     }
 }
