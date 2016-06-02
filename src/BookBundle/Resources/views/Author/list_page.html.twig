@@ -5,22 +5,24 @@
         <h2 style="text-align: center">Lista autori</h2>
         <hr class="soft">
         <div class="tab-content">
-            <div class="tab-pane  active" id="blockView">
-                <ul class="thumbnails">
-                    {% for author in authors %}
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a href="product_details.html">
-                                    <img src="{{ asset(author.imageUrl)|imagine_filter('author_list') }}" alt=""/>
-                                </a>
-                                <div class="caption">
-                                    <h5>{{ author.lastName ~' '~ author.firstName }}</h5>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
+            <div class="tab-pane  active" id="listView">
+                {% for author in authors %}
+                <div class="row">
+                    <div class="span2">
+                        <a href="{{ path('book_bundle.author_details', {'slug_name': author.getFullName()|sonata_slugify, 'id': author.id }) }}">
+                            <img src="{{ asset(author.imageUrl)|imagine_filter('author_list') }}" alt=""/>
+                        </a>
+                    </div>
+                    <div class="span6">
+                        <h3>{{ author.lastName ~' '~ author.firstName }}</h3>
+                        <hr class="soft"/>
+                        <p> {{ author.description| truncate(250, true, "...") }} </p>
+                        <a class="btn btn-small pull-right" href="{{ path('book_bundle.author_details', {'slug_name': author.getFullName()|sonata_slugify, 'id': author.id }) }}">Vezi detalii</a>
+                        <br class="clr"/>
+                    </div>
+                </div>
                 <hr class="soft"/>
+                {% endfor %}
             </div>
         </div>
     </div>

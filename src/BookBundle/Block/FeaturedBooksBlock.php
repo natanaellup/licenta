@@ -47,6 +47,7 @@ class FeaturedBooksBlock extends BaseBlockService
 
         shuffle($featuredBooks);
 
-        return $this->renderResponse($blockContext->getTemplate(), array('books' => $featuredBooks), $response);
+        return $this->renderResponse($blockContext->getTemplate(), array('books' => $featuredBooks,
+                                'sliderTitle' => 'Carti recomandate'), $response);
     }
 }

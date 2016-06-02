@@ -1,24 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="author-page-content">
-
-        <div class="author-information">
-            <div class="image">
-                <img src="{{ asset(author.getImageUrl) }}">
+    <div class="span9">
+        <h2 style="text-align: center">{{ author.getFullName() }}</h2>
+        <hr class="soft">
+        <div class="row">
+            <div class="span3">
+                <img src="{{ asset(author.imageUrl)|imagine_filter('author_details_image') }}">
             </div>
-            <div class="author-description">
-                <div class="author-name">
-                    <h1>{{ author.getFullName() }}</h1>
-                </div>
-
-                <div class="description">
-                    <p>{{ author.getDescription() }}</p>
-                </div>
+            <div class="span6">
+                <p>{{ author.description }}</p>
             </div>
-            <div style="clear:both;"></div>
         </div>
-
-
+        {% if author.getActiveBooks()|length > 0 %}
+            <div class="author-books">
+                <hr class="soft">
+                <h5>{{ 'Numarul cartilor active: ' ~ author.getActiveBooks()|length }}</h5>
+                {{ include('BookBundle:Block:slider_books_block.html.twig',{'books': author.getActiveBooks(), 'sliderTitle': null }) }}
+            </div>
+        {% else %}
+            <div class="author-books">
+                <hr class="soft">
+                <h5>{{ 'Autorul nu are carti active in acest moment.' }}</h5>
+            </div>
+        {% endif %}
     </div>
+
+
 {% endblock %}

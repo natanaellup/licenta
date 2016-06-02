@@ -135,7 +135,7 @@ class Author
      */
     public function getFullName()
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->lastName.' '.$this->firstName;
     }
 
     /**

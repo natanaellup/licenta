@@ -181,3 +181,6 @@ liip_imagine:
         author_list:
             filters:
                 thumbnail: { size: [200, 160], mode: outbound }
+        author_details_image:
+            filters:
+                thumbnail: { size: [270, 300], mode: inset  }

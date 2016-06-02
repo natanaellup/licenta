@@ -1,7 +1,9 @@
 {% set first = 1 %}
 {% set closeDiv = 0 %}
 <div class="well well-small">
-    <h4>Carti recomandate</h4>
+    {% if sliderTitle is not null %}
+        <h4>{{ sliderTitle }}</h4>
+    {% endif %}
     <div class="row-fluid">
         <div id="featured" class="carousel slide">
             <div class="carousel-inner">
