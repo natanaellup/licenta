@@ -304,7 +304,7 @@ class Author
             }
         }
 
-        return $book;
+        return $activeBooks;
     }
 
     /**

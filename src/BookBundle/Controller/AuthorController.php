@@ -81,7 +81,7 @@ class AuthorController extends Controller
 
         return $this->render('BookBundle:Author:edit.html.twig',array('form' => $form->createView()));
     }
-    //TODO: get all active books for each authors
+
     /**
      * @param Request $request
      *
@@ -89,18 +89,10 @@ class AuthorController extends Controller
      */
     public function listPageAction(Request $request)
     {
-        $form = $this->createForm(new SearchFreeTextForm());
+        $authorRepo = $this->getDoctrine()->getManager()->getRepository('BookBundle:Author');
+        $authors = $authorRepo->findBy(array('active' => '1'));
 
-        return $this->render('BookBundle:Author:list_page.html.twig', array('freeTextForm' => $form->createView()));
-    }
-
-    /**
-     * For Ajax Request.
-     * @param Request $request
-     */
-    public function listContentAction(Request $request)
-    {
-
+        return $this->render('BookBundle:Author:list_page.html.twig', array('authors' => $authors));
     }
 
     /**
