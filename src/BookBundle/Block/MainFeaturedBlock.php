@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainFeaturedBlock extends BaseBlockService
 {
-    const NO_MAIN_FEATURED_BOOKS = 4;
+    const NO_MAIN_FEATURED_BOOKS = 2;
 
     /**
      * @var Registry
@@ -41,7 +41,7 @@ class MainFeaturedBlock extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $booksRepository = $this->doctrine->getManager()->getRepository('BookBundle:Book');
-        $mainFeaturedBooks = $booksRepository->findBy('maineFeatured = 1');
+        $mainFeaturedBooks = $booksRepository->findBy(array('mainFeatured' => '1'));
 
         if (empty($mainFeaturedBooks)) {
             return new Response();
@@ -51,6 +51,6 @@ class MainFeaturedBlock extends BaseBlockService
 
         $mainFeaturedBooks = array_slice($mainFeaturedBooks, 0, self::NO_MAIN_FEATURED_BOOKS);
 
-        return $this->renderResponse($blockContext->getTemplate(), array('maineFeaturedBooks' => $mainFeaturedBooks), $response);
+        return $this->renderResponse($blockContext->getTemplate(), array('mainFeaturedBooks' => $mainFeaturedBooks), $response);
     }
 }

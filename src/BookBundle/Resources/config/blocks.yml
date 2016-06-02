@@ -2,7 +2,16 @@ services:
     books.block.category:
         class: BookBundle\Block\CategoryBlock
         arguments:
-            - campaigns.block.merchant_campaigns
+            - books.block.category
+            - @templating
+            - @doctrine
+        tags:
+            - { name: sonata.block }
+
+    books.block.main_featured:
+        class: BookBundle\Block\MainFeaturedBlock
+        arguments:
+            - books.block.main_featured
             - @templating
             - @doctrine
         tags:
