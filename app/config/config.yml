@@ -150,6 +150,7 @@ sonata_block:
             contexts:   [admin]
         books.block.category:
         books.block.main_featured:
+        books.block.featured:
 
 liip_imagine:
     resolvers:

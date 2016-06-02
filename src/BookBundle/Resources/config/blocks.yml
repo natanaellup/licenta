@@ -16,3 +16,12 @@ services:
             - @doctrine
         tags:
             - { name: sonata.block }
+
+    books.block.featured:
+        class: BookBundle\Block\FeaturedBooksBlock
+        arguments:
+            - books.block.featured
+            - @templating
+            - @doctrine
+        tags:
+            - { name: sonata.block }

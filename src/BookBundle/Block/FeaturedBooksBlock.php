@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FeaturedBooksBlock extends BaseBlockService
 {
-    const NO_FEATURED_BOOKS = 3;
-
     /**
      * @var Registry
      */
@@ -34,14 +32,14 @@ class FeaturedBooksBlock extends BaseBlockService
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'BookBundle:Block:featured_books_block.html.twig'
+            'template' => 'BookBundle:Block:slider_books_block.html.twig'
         ));
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $booksRepository = $this->doctrine->getManager()->getRepository('BookBundle:Book');
-        $featuredBooks = $booksRepository->findBy('featured = 1');
+        $featuredBooks = $booksRepository->findBy(array('featured' => '1'));
 
         if (empty($featuredBooks)) {
             return new Response();
@@ -49,8 +47,6 @@ class FeaturedBooksBlock extends BaseBlockService
 
         shuffle($featuredBooks);
 
-        $featuredBooks = array_slice($featuredBooks, 0, self::NO_FEATURED_BOOKS);
-
-        return $this->renderResponse($blockContext->getTemplate(), array('featuredBooks' => $featuredBooks), $response);
+        return $this->renderResponse($blockContext->getTemplate(), array('books' => $featuredBooks), $response);
     }
 }

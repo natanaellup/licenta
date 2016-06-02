@@ -1,0 +1,43 @@
+{% set first = 1 %}
+{% set closeDiv = 0 %}
+<div class="well well-small">
+    <h4>Carti recomandate</h4>
+    <div class="row-fluid">
+        <div id="featured" class="carousel slide">
+            <div class="carousel-inner">
+
+                {% for book in books %}
+                    {% if (loop.index % 4) - 1 == 0 %}
+                        <div class="item {% if first == 1 %}{{ 'active' }} {% set first = 0 %}{% endif %}">
+                        <ul class="thumbnails">
+                    {% endif %}
+
+                    <li class="span3">
+                        <div class="thumbnail">
+                            <a href="product_details.html"><img src="{{ asset(book.imageUrl) }}" alt=""></a>
+                            <div class="caption">
+                                <h5>{{ book.title }}</h5>
+                                <h4><a class="btn" href="product_details.html">VIEW</a> <span
+                                            class="pull-right">$222.00</span></h4>
+                            </div>
+                        </div>
+                    </li>
+                    {% set closeDiv = 0 %}
+                    {% if (loop.index % 4) == 0 %}
+                        </ul>
+                        </div>
+                        {% set closeDiv = 1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if closeDiv == 0 %}
+                        </ul>
+                    </div>
+                {% endif %}
+        </div>
+        <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+        <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+
+    </div>
+</div>
+</div>
