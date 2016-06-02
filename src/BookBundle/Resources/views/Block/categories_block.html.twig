@@ -6,7 +6,8 @@
         <li class="subMenu {% if firstLi == 1 %}{{ 'open' }}{% endif %}"><a>{{ category.name }}</a>
             <ul style="{% if displayNone == 1 %}{{ 'display:none' }}{% endif %}">
                 {% for subcategory in category.subcategories %}
-                    <li><a class="{% if firstLi == 1 %}{{ 'active' }}{% set firstLi = 0 %}{% endif %}">
+                    <li><a href="{{ path('book_bundle.category_details',{'slug_name': subcategory.name|sonata_slugify, 'id': subcategory.id}) }}"
+                            class="{% if firstLi == 1 %}{{ 'active' }}{% set firstLi = 0 %}{% endif %}">
                             <i class="icon-chevron-right"></i>{{ subcategory.name }}
                             {% if noActiveBooks[subcategory.id] !=  0 %}
                                 <strong>{{ '[' }}{{ noActiveBooks[subcategory.id] }}{{ ']' }}</strong>

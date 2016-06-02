@@ -1,5 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {{ category }}
+
+    <div class="span9">
+        <h2 style="text-align: center">{{ subcategory.name }}</h2>
+        <hr class="soft">
+
+        <h4>{{ 'Categoria: ' ~ subcategory.category.name }}</h4>
+        {% if subcategory.description is not null %}
+            <p>{{ subcategory.description }}</p>
+        {% endif %}
+        <hr class="soft">
+
+        {% if subcategory.getActiveBooks()|length > 0 %}
+            {{ include('BookBundle:Block:latest_books_block.html.twig', {'books': subcategory.getActiveBooks()}) }}
+        {% else %}
+            <h6>Aceasta categorie nu contine carti active momentan!</h6>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -2,7 +2,8 @@
     <div class="container">
         <div id="welcomeLine" class="row">
             {% if app.user is not null %}
-                <div class="span6">Bine ati venit, <strong> {{ app.user.username }}</strong>!</div>
+                <div class="span6">Bine ati venit, <strong><a href="{{ path('sonata_admin_dashboard') }}"> {{ app.user.username }} </a>
+                                                                        </strong>!</div>
             {% endif %}
         </div>
         <!-- Navbar ================================================== -->
@@ -30,8 +31,7 @@
                 </form>
                 <ul id="topMenu" class="nav pull-right">
                     <li class=""><a href="special_offer.html">Carti</a></li>
-                    <li class=""><a href="normal.html">Autori</a></li>
-                    <li class=""><a href="contact.html">Categorii</a></li>
+                    <li class=""><a href="{{ path('book_bundle.author_list_page') }}">Autori</a></li>
                     <li class="">
                         {% if app.user is null %}
                             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span

@@ -27,6 +27,11 @@ class Subcategory
     protected $books;
 
     /**
+     * @var string
+     */
+    protected $description;
+
+    /**
      * @return int
      */
     public function getId()
@@ -126,6 +131,44 @@ class Subcategory
         }
 
         return $count;
+    }
+
+    /**
+     * Get active books.
+     *
+     * @return Book|mixed|null
+     */
+    public function getActiveBooks()
+    {
+        $activeBooks = new ArrayCollection();
+
+        foreach($this->books as $book)
+        {
+            if($book->isActive()){
+                $activeBooks->add($book);
+            }
+        }
+
+        return $activeBooks;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param $description
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     /**

@@ -29,7 +29,8 @@ class SubcategoryAdmin extends Admin
      */
     public function configureFormFields(FormMapper $form)
     {
-        $form->add('name');
+        $form->add('name')
+            ->add('description', 'textarea');
     }
 
     /**

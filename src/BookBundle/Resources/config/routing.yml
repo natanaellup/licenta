@@ -16,6 +16,6 @@ book_bundle.author_details:
 book_bundle.author_list_page:
     path: /autori
     defaults: { _controller: BookBundle:Author:listPage }
-book_bundle.authot_list_content:
-    path: /autori-ajax
-    defaults: { _controller: BookBundle:Author:listContent }
+book_bundle.category_details:
+    path: /categorie/{slug_name}/{id}
+    defaults: { _controller: BookBundle:Category:details }

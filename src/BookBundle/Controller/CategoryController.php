@@ -8,22 +8,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
 {
-    //TODO: get all active book for each categories
-    public function listAction(Request $request)
-    {
-        $categories = $this->getDoctrine()->getRepository('BookBundle:Category')->findAll();
-
-        return $this->render('BookBundle:Category:list.html.twig', array('categories' => $categories));
-    }
-
     public function detailsAction(Request $request, $id)
     {
-        $category = $this->getDoctrine()->getRepository('BookBundle:Category')->find($id);
+        $subcategory = $this->getDoctrine()->getRepository('BookBundle:Subcategory')->find($id);
 
-        if(is_null($category)){
+        if(is_null($subcategory)){
             throw  new NotFoundHttpException('Categoria nu exista!');
         }
 
-        return $this->render('BookBundle:Category:details.html.twig',array('category' => $category));
+        return $this->render('BookBundle:Category:details.html.twig',array('subcategory' => $subcategory));
     }
 }

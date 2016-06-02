@@ -12,6 +12,9 @@ BookBundle\Entity\Subcategory:
             type: string
             nullable: false
             length: 255
+        description:
+            type: text
+            nullable: true
     oneToMany:
         books:
             targetEntity: BookBundle\Entity\Book
