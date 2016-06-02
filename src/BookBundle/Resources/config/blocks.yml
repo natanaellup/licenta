@@ -25,3 +25,12 @@ services:
             - @doctrine
         tags:
             - { name: sonata.block }
+
+    books.block.latest:
+        class: BookBundle\Block\LatestBlock
+        arguments:
+            - books.block.latest
+            - @templating
+            - @doctrine
+        tags:
+            - { name: sonata.block }

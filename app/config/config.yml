@@ -151,6 +151,7 @@ sonata_block:
         books.block.category:
         books.block.main_featured:
         books.block.featured:
+        books.block.latest:
 
 liip_imagine:
     resolvers:
@@ -170,3 +171,6 @@ liip_imagine:
         author_image_list:
             filters:
                 thumbnail: { size: [175, 175], mode: outbound }
+        book_list:
+            filters:
+                thumbnail: { size: [160, 160], mode: outbound }

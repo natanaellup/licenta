@@ -6,5 +6,12 @@
         { 'type': 'books.block.featured' },
         { 'extra_cache_keys': { 'block_id': 'books.block.featured', 'updated_at': 'now' } }
         ) }}
+
+
+
+        {{ sonata_block_render(
+        { 'type': 'books.block.latest' },
+        { 'extra_cache_keys': { 'block_id': 'books.block.latest', 'updated_at': 'now' } }
+        ) }}
     </div>
 {% endblock %}

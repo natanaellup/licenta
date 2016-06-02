@@ -33,27 +33,21 @@ class LatestBlock extends BaseBlockService
 
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
-//        $resolver->setDefaults(array(
-//            'template' => 'BookBundle:Block:categories_block.html.twig'
-//        ));
+        $resolver->setDefaults(array(
+            'template' => 'BookBundle:Block:latest_books_block.html.twig'
+        ));
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-//        $categoryRepository = $this->doctrine->getRepository('BookBundle:Category');
-//        $categories = $categoryRepository->findAll();
-//
-//        if(empty($categories)){
-//            return new Response();
-//        }
-//
-//        $noActiveBooks = array();
-//
-//        foreach($categories as $category){
-//            $noActiveBooks[$category->getId()] = $category->getNoActiveBooks();
-//        }
-//
-//        return $this->renderResponse($blockContext->getTemplate(), array('categories' => $categories, 'noActiveBooks' => $noActiveBooks ), $response);
+        $bookRepo = $this->doctrine->getManager()->getRepository('BookBundle:Book');
+        $books = $bookRepo->findBy(array('active' => '1'),array('addDate' => 'DESC'),self::NO_LATEST_BOOKS);
+
+        if(empty($books)){
+            return new Response();
+        }
+
+        return $this->renderResponse($blockContext->getTemplate(), array('books' => $books), $response);
     }
 
 }

@@ -2,7 +2,7 @@
     <br>
     <div class="thumbnail">
         {#{{ dump() }}#}
-        <img src="{{ asset(mainFeaturedBook.imageUrl) }}" alt="{{ mainFeaturedBook.title }}"/>
+        <img src="{{ asset(mainFeaturedBook.imageUrl)|imagine_filter('main_featured_book_list') }}" alt="{{ mainFeaturedBook.title }}"/>
         <div class="caption">
             <h5>{{ mainFeaturedBook.title }}</h5>
             <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
