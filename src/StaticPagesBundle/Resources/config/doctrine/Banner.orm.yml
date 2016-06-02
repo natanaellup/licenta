@@ -17,3 +17,7 @@ StaticPagesBundle\Entity\Banner:
         link:
             nullable: false
             type: string
+        position:
+            type: integer
+            gedmo:
+                - sortablePosition

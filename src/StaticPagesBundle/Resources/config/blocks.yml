@@ -1,0 +1,9 @@
+services:
+    static_pages.block.banners:
+        class: StaticPagesBundle\Block\BannerBlock
+        arguments:
+            - static_pages.block.banners
+            - @templating
+            - @doctrine
+        tags:
+            - { name: sonata.block }

@@ -39,22 +39,14 @@ class BannerBlock extends BaseBlockService
 
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-//        $categoryRepository = $this->doctrine->getRepository('BookBundle:Category');
-//        $categories = $categoryRepository->findAll();
-//
-//        if(empty($categories)){
-//            return new Response();
-//        }
-//
-//        $noActiveBooks = array();
-//        foreach($categories as $category){
-//            foreach($category->getSubcategories() as $subcategory){
-//                $noActiveBooks[$subcategory->getId()] = $subcategory->getNoActiveBooks();
-//            }
-//        }
-//
-//        return $this->renderResponse($blockContext->getTemplate(), array('categories' => $categories,
-//            'noActiveBooks' => $noActiveBooks ), $response);
+        $bannerRepository = $this->doctrine->getRepository('StaticPagesBundle:Banner');
+        $banners = $bannerRepository->findBy(array('active' => 1));
+
+        if(empty($banners)){
+            return new Response();
+        }
+
+        return $this->renderResponse($blockContext->getTemplate(), array('banners' => $banners), $response);
     }
 
 }

@@ -32,7 +32,9 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new StaticPagesBundle\StaticPagesBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle()
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

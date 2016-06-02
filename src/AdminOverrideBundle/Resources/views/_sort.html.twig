@@ -1,0 +1,31 @@
+{% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
+    {% set pix_position = sortableObjectPosition(object) %}
+
+    <div class="order-buttons">
+        <ul style="padding:0; margin:0">
+            <li style="display: inline-block; min-width: 25px">
+                {% if pix_position < admin.last_position %}
+                    <a class="button glyphicon glyphicon-chevron-down" style="margin:0 5px;" href="{{ admin.generateObjectUrl('move', object, {'position': 'bottom'}) }}" title="{{ 'move_to_bottom'|trans({}, 'admin') }}"></a>
+                {% endif %}
+            </li>
+
+            <li style="display: inline-block; min-width: 25px">
+                {% if pix_position < admin.last_position %}
+                    <a class="button glyphicon glyphicon-arrow-down" style="margin:0 5px;" href="{{ admin.generateObjectUrl('move', object, {'position': 'down'}) }}" title="{{ 'move_down'|trans({}, 'admin') }}"></a>
+                {% endif %}
+            </li>
+
+            <li style="display: inline-block; min-width: 25px">
+                {% if pix_position > 0 %}
+                    <a class="button glyphicon glyphicon-arrow-up" style="margin:0 5px;" href="{{ admin.generateObjectUrl('move', object, {'position': 'up'}) }}" title="{{ 'move_up'|trans({}, 'admin') }}"></a>
+                {% endif %}
+            </li>
+
+            <li style="display: inline-block; min-width: 25px">
+                {% if pix_position > 0 %}
+                    <a class="button glyphicon glyphicon-chevron-up" style="margin:0 5px;" href="{{ admin.generateObjectUrl('move', object, {'position': 'top'}) }}" title="{{ 'move_to_top'|trans({}, 'admin') }}"></a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+{% endif %}

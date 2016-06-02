@@ -4,8 +4,9 @@ services:
         arguments:
             - ~
             - StaticPagesBundle\Entity\Banner
-            - ~
+            - PixSortableBehaviorBundle:SortableAdmin
         tags:
           - { name: sonata.admin, manager_type: orm, label: "Banner", group: "Content management" }
         calls:
           - [setTranslationDomain, [admin]]
+          - [ setPositionService, [ "@pix_sortable_behavior.position" ]]

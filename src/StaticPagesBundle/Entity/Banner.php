@@ -41,6 +41,11 @@ class Banner
     protected $active;
 
     /**
+     * @var integer
+     */
+    protected $position = 0;
+
+    /**
      * @return UploadedFile
      */
     public function getImage()
@@ -127,6 +132,25 @@ class Banner
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param $position
+     * @return $this
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
         return $this;
     }
 

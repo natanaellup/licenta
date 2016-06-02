@@ -131,7 +131,7 @@ sonata_admin:
     templates:
         # default global templates
         user_block: AdminOverrideBundle:Block:block_user.html.twig
-        layout:     AdminOverrideBundle:standard_layout.html.twig
+        layout:     AdminOverrideBundle::standard_layout.html.twig
         ajax:       SonataAdminBundle::ajax_layout.html.twig
 
         # default actions templates, should extend a global templates
@@ -152,6 +152,7 @@ sonata_block:
         books.block.main_featured:
         books.block.featured:
         books.block.latest:
+        static_pages.block.banners:
 
 liip_imagine:
     resolvers:
@@ -174,3 +175,6 @@ liip_imagine:
         book_list:
             filters:
                 thumbnail: { size: [160, 160], mode: outbound }
+        banner_list:
+            filters:
+                thumbnail: { size: [1170, 480], mode: outbound}

@@ -1,0 +1,17 @@
+{% set first = 1 %}
+<div id="carouselBlk">
+    <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+            {% for banner in banners %}
+                <div class="item{% if first == 1 %} {{'active'}}{% set first = 0 %}{% endif %}">
+                    <div class="container">
+                        <a target="_blank" href="{{ banner.link }}"><img style="width:100%" src="{{ asset(banner.imageUrl)|imagine_filter('banner_list') }}"
+                                  alt="Oferta speciala"/></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+</div>

@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block carousel %}
+    {{ sonata_block_render(
+    { 'type': 'static_pages.block.banners' },
+    { 'extra_cache_keys': { 'block_id': 'static_pages.block.banners', 'updated_at': 'now' } }
+    ) }}
+{% endblock %}
+
 {% block content %}
     <div class="span9">
         {{ sonata_block_render(
