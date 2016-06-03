@@ -88,4 +88,21 @@ class BookController extends Controller
         return $this->render('BookBundle:Book:add.html.twig',array('form' => $bookForm->createView()));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showBookAction(Request $request, $id)
+    {
+        /** @var Book $book */
+        $book = $this->getDoctrine()->getRepository('BookBundle:Book')->find($id);
+
+        if(is_null($book) && !$book->isActive()){
+            throw new NotFoundHttpException('User-ul nu exista!');
+        }
+
+        return $this->render('BookBundle:Book:show.html.twig', array('book' => $book));
+    }
+
 }

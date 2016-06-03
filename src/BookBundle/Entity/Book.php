@@ -166,8 +166,8 @@ class Book
     public function addAuthor(Author $author, $updateRelation = true)
     {
         $this->authors[] = $author;
-        if($updateRelation){
-            $author->addBook($this,false);
+        if ($updateRelation) {
+            $author->addBook($this, false);
         }
 
         return $this;
@@ -181,8 +181,8 @@ class Book
     public function removeAuthor(Author $author, $updateRelation = true)
     {
         $this->authors->removeElement($author);
-        if($updateRelation){
-            $author->removeBook($this,false);
+        if ($updateRelation) {
+            $author->removeBook($this, false);
         }
 
         return $this;
@@ -196,6 +196,20 @@ class Book
     {
         $this->authors = $authors;
         return $this;
+    }
+
+    public function getAllAuthorsString()
+    {
+        if ($this->authors->count() == 1) {
+            return $this->authors->first()->getFullName();
+        }
+
+        $authorsString = '';
+        foreach ($this->authors as $author) {
+            $authorsString.= $author->getFullName().' ,';
+        }
+
+        return $authorsString;
     }
 
     /**
@@ -406,7 +420,7 @@ class Book
      */
     public function __toString()
     {
-        if(!is_null($this->title)){
+        if (!is_null($this->title)) {
             return $this->title;
         }
 

@@ -183,4 +183,7 @@ liip_imagine:
                 thumbnail: { size: [200, 160], mode: outbound }
         author_details_image:
             filters:
-                thumbnail: { size: [270, 300], mode: inset  }
+                thumbnail: { size: [270, 300], mode: outbound }
+        show_image_book:
+            filters:
+                thumbnail: { size: [170, 250], mode:outbound }

@@ -19,3 +19,6 @@ book_bundle.author_list_page:
 book_bundle.category_details:
     path: /categorie/{slug_name}/{id}
     defaults: { _controller: BookBundle:Category:details }
+book_bundle.show_book:
+    path: /carte/{slug_name}/{id}
+    defaults: { _controller: BookBundle:Book:showBook }

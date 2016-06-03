@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="span9">
+        <h2 style="text-align: center">{{ book.title }}</h2>
+        <hr class="soft">
+        <div class="row">
+            <div class="span2">
+                <img src="{{ asset(book.imageUrl)|imagine_filter('show_image_book') }}">
+            </div>
+            <div class="span7">
+                <h5>Categorie: <a
+                            href="{{ path('book_bundle.category_details',{'slug_name' : book.subcategory.name|sonata_slugify, 'id': book.subcategory.id}) }}">
+                        <strong>{{ book.subcategory.name }}</strong>
+                    </a>
+                </h5>
+                <h5>
+                    {% if book.authors|length == 1 %}
+                        Autor:
+                        <a href="{{ path('book_bundle.author_details',{'slug_name': book.authors[0].getFullName|sonata_slugify, 'id': book.authors[0].id}) }}">
+                            {{ book.authors[0].getFullName() }}
+                        </a>
+                    {% else %}
+                        Autori:
+                        {% for author in book.authors %}
+                            <a href="{{ path('book_bundle.author_details',{'slug_name': author.getFullName|sonata_slugify, 'id': author.id}) }}">
+                                {{ author.getFullName() }}
+                            </a>
+                            {% if not loop.last %}
+                                {{',' }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </h5>
+                <p>{{ book.description }}</p>
+            </div>
+        </div>
+        <hr class="soft">
+        {{ include('@Book/Block/slider_books_block.html.twig', {'books': book.subcategory.activeBooks, 'sliderTitle': 'Carti din aceeasi categorie'}) }}
+    </div>
+
+
+{% endblock %}
