@@ -2,6 +2,8 @@
 
 namespace UserBundle\Entity;
 
+use ActivityBundle\Entity\Comment;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -49,10 +51,16 @@ class User extends BaseUser
     protected $avatar;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $comments;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
+        $this->comments =  new ArrayCollection();
         parent::__construct();
     }
 
@@ -151,6 +159,42 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comment
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments->add($comment);
+        $comment->setUser($this);
+    }
+
+    /**
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+        $comment->setUser(null);
+    }
+
+    /**
+     * @param $comments
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
 
 }
 

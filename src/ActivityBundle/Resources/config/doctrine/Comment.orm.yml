@@ -1,0 +1,29 @@
+ActivityBundle\Entity\Comment:
+    type: entity
+    table: comments
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        text:
+            type: text
+            nullable: false
+        dateTime:
+            type: datetime
+            nullable: false
+    manyToOne:
+        user:
+            targetEntity: UserBundle\Entity\User
+            inversedBy: comments
+            joinColumn:
+              name: user_id
+              referencedColumnName: id
+        book:
+            targetEntity: BookBundle\Entity\Book
+            inversedBy: comments
+            joinColumn:
+              name: book_id
+              referencedColumnName: id

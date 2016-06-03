@@ -66,3 +66,7 @@ BookBundle\Entity\Book:
                 inverseJoinColumns:
                     id_author:
                       referencedColumnName: id
+    oneToMany:
+        comments:
+            targetEntity: ActivityBundle\Entity\Comment
+            mappedBy: book

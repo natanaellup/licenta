@@ -2,6 +2,7 @@
 
 namespace BookBundle\Entity;
 
+use ActivityBundle\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use UserBundle\Entity\User;
@@ -99,11 +100,17 @@ class Book
     private $mainFeatured;
 
     /**
+     * @var ArrayCollection
+     */
+    private $comments;
+
+    /**
      * Book constructor.
      */
     public function __construct()
     {
         $this->authors = new ArrayCollection();
+        $this->comments =  new ArrayCollection();
     }
 
     /**
@@ -147,6 +154,43 @@ class Book
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param Comment $comment
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments->add($comment);
+        $comment->setBook($this);
+    }
+
+    /**
+     * @param Comment $comment
+     */
+    public function removeComment(Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+        $comment->setBook(null);
+    }
+
+    /**
+     * @param $comments
+     * @return $this
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
         return $this;
     }
 
