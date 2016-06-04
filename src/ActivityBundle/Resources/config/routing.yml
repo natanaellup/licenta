@@ -1,3 +1,8 @@
-activity_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ActivityBundle:Default:index }
+add_comment:
+    path:     /comments/add
+    defaults: { _controller: ActivityBundle:Comment:addComment }
+delete_comment:
+    path:     /comments/delete
+    defaults: { _controller: ActivityBundle:Comment:deleteComment }
+
+

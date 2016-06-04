@@ -104,7 +104,7 @@ class Comment
 
     public function getDateTimeFormatted()
     {
-        return $this->dateTime->format('Y-m-d');
+        return $this->dateTime->format('Y-m-d H:i:s');
     }
 
     /**

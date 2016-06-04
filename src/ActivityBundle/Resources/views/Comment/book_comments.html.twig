@@ -1,0 +1,31 @@
+<div class="span9">
+    <div class="row">
+        <div class="comments-wrapper">
+            <div class="comments">
+                {% for comment in comments %}
+                    <div class="comment span6">
+                        <p><strong>{{ comment.user.username }}: </strong>
+                            {{ comment.text }}</p>
+                    </div>
+                    <div class="span3">
+                        {{ comment.getDateTimeFormatted() }}
+                        {% if comment.user.id == app.user.id %}
+                            {#<div class="remove-item" data-comment-id="{{ comment.id }}">DELETE</div>#}
+                            <i class="icon-remove remove-item" data-comment-id="{{ comment.id }}"></i>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <form class="form-horizontal comments-form">
+                <fieldset>
+                    <div class="control-group">
+                            <textarea class="input-xlarge comment-field" data-book-id="{{ bookId }}" rows="3"
+                                      id="textarea"
+                                      style="width: 740px"></textarea>
+                    </div>
+                    <button class="btn btn-large add-comment" type="submit">Adaugati o recenzie</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
