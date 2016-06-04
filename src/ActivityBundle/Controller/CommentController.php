@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CommentController extends Controller
 {
+    /**
+     * Add Ajax action.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function addCommentAction(Request $request)
     {
         $bookId = $request->get('bookId');
