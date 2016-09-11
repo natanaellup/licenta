@@ -16,7 +16,7 @@ class BookHandlerForm extends AbstractType
             ->add('description', 'textarea')
             ->add('image', 'file',array('image_path' => 'imageUrl', 'image_style' => 'avatar_profile_edit'))
             ->add('document','file',array('file_path' => 'documentUrl','file_name' => 'title'))
-            ->add('category','entity',array('class' => 'BookBundle\Entity\Category'))
+            ->add('subcategory','entity',array('class' => 'BookBundle\Entity\Subcategory'))
             ->add('authors','entity',array(
                     'class' => 'BookBundle\Entity\Author',
                     'multiple' => true,

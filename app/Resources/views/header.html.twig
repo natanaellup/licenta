@@ -2,9 +2,18 @@
     <div class="container">
         <div id="welcomeLine" class="row">
             {% if app.user is not null %}
-                <div class="span6">Bine ati venit, <strong><a
+                <div class="span6">
+                    <a href="{{ path('fos_user_profile_show') }}">Profilul meu</a>
+                    <a href="{{ path('fos_user_profile_edit') }}">Editeaza profil</a>
+                    <a href="{{ path('book_bundle.add_author') }}">Adauga autor</a>
+                    <a href="{{ path('book_bundle.add_book') }}">Adauga carte</a>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        Bine ati venit, <strong>
+                        <a
                                 href="{{ path('sonata_admin_dashboard') }}"> {{ app.user.username }} </a>
                     </strong>!
+                    {% endif %}
                 </div>
             {% else %}
                 <div class="span6"><strong><a

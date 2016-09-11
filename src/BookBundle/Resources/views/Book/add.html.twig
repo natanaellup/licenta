@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {% include 'BookBundle:Form:add_edit_book.html.twig' %}
+
+    <div class="span9">
+        <h3>Adauga carte</h3>
+        <div class="well">
+            {% include 'BookBundle:Form:add_edit_book.html.twig' %}
+        </div>
+    </div>
+
 {% endblock %}
 

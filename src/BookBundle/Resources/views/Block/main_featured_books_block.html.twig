@@ -2,10 +2,12 @@
     <br>
     <div class="thumbnail">
         {#{{ dump() }}#}
-        <img src="{{ asset(mainFeaturedBook.imageUrl)|imagine_filter('book_list') }}" alt="{{ mainFeaturedBook.title }}"/>
+        <a href="{{ path('book_bundle.show_book',{'slug_name': mainFeaturedBook.title|sonata_slugify, 'id': mainFeaturedBook.id}) }}">
+            <img src="{{ asset(mainFeaturedBook.imageUrl)|imagine_filter('book_list') }}"
+                 alt="{{ mainFeaturedBook.title }}"/>
+        </a>
         <div class="caption">
             <h5>{{ mainFeaturedBook.title }}</h5>
-            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
         </div>
     </div>
 {% endfor %}
