@@ -61,11 +61,23 @@ class User extends BaseUser
     protected $likes;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $readers;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $wishlists;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->comments =  new ArrayCollection();
+        $this->readers = new ArrayCollection();
+        $this->wishlists =  new ArrayCollection();
         parent::__construct();
     }
 
@@ -227,6 +239,58 @@ class User extends BaseUser
         return $this->likes;
     }
 
+
+    public function getReaders()
+    {
+        return $this->readers;
+    }
+
+    public function setReaders($readers)
+    {
+        $this->readers = $readers;
+
+        return $this;
+    }
+
+    public function addReader($reader)
+    {
+        $this->readers->add($reader);
+
+        return $this;
+    }
+
+    public function removeReader($reader)
+    {
+        $this->readers->removeElement($reader);
+
+        return $this;
+    }
+
+    public function getWishlists()
+    {
+        return $this->wishtlists;
+    }
+
+    public function setWishlists($wishlist)
+    {
+        $this->wishtlists = $wishlist;
+
+        return $this;
+    }
+
+    public function addWishlist($wishlist)
+    {
+        $this->wishlist->add($wishlist);
+
+        return $this;
+    }
+
+    public function removeWishlist($wishlist)
+    {
+        $this->wishlists->removeElement($wishlist);
+
+        return $this;
+    }
 
 }
 

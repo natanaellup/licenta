@@ -6,16 +6,30 @@
         <hr class="soft">
         <div class="row">
             <div class="span2">
-                <img src="{{ asset(book.imageUrl)|imagine_filter('show_image_book') }}" style="">
+                {% if app.user %}
+                    <a href="{{ asset(book.documentUrl) }}" target="_blank">
+                        <img src="{{ asset(book.imageUrl)|imagine_filter('show_image_book') }}" style="">
+                    </a>
+                {% else %}
+                    <img src="{{ asset(book.imageUrl)|imagine_filter('show_image_book') }}" style="">
+                {% endif %}
                 {% if app.user is not null %}
                     <h4 style="text-align:center">
-                        <a class="btn">Citita</a>
-                        {% if not book.userLikeBook(app.user) %}
-                            <a class="btn btn-like like-button like-button-action">Like</a>
-                                {% else %}
-                            <button class="btn unlike-button like-button-action">Unlike</button>
-                        {% endif %}
-                        <a class="btn btn-primary" style="margin-top: 5px">Adauga in whistlist</a></h4>
+
+                    {% if not book.userReaderBook(app.user) %}
+                        <a class="btn reader-button-action">Citita</a>
+                    {% endif %}
+
+                    {% if not book.userLikeBook(app.user) %}
+                        <a class="btn btn-like like-button like-button-action">Like</a>
+                    {% else %}
+                        <button class="btn unlike-button like-button-action">Unlike</button>
+                    {% endif %}
+
+                    {% if not book.userWishListBook(app.user) %}
+                        <a class="btn btn-primary whislist-button-action" style="margin-top: 5px">Adauga in
+                            whistlist</a></h4>
+                    {% endif %}
                 {% endif %}
             </div>
             <div class="span7">
@@ -45,11 +59,22 @@
                 <p>{{ book.description }}</p>
             </div>
         </div>
-        {{ include('@Activity/Like/book_like.html.twig', {'noLikes': book.like|length} ) }}
-        <hr class="soft">
-        {{ include('@Book/Block/slider_books_block.html.twig', {'books': book.subcategory.activeBooks, 'sliderTitle': 'Carti din aceeasi categorie'}) }}
-
-        {{ include('@Activity/Comment/book_comments.html.twig', {'comments': book.comments, 'bookId': book.id} ) }}
+        {% if app.user %}
+            <div class="whislist-wrapper">
+                {% if book.userWishListBook(app.user) %}
+                    <p><strong>Cartea a fost adaugata in lista de dorinte.</strong></p>
+                {% endif %}
+            </div>
+            <div class="reader-wrapper">
+                {% if book.userReaderBook(app.user) %}
+                    <p><strong>Cartea a fost citita.</strong></p>
+                {% endif %}
+            </div>
+            {{ include('@Activity/Like/book_like.html.twig', {'noLikes': book.like|length} ) }}
+            <hr class="soft">
+            {{ include('@Book/Block/slider_books_block.html.twig', {'books': book.subcategory.activeBooks, 'sliderTitle': 'Carti din aceeasi categorie'}) }}
+            {{ include('@Activity/Comment/book_comments.html.twig', {'comments': book.comments, 'bookId': book.id} ) }}
+        {% endif %}
     </div>
 
 
@@ -60,7 +85,9 @@
 
     {% javascripts
     '@BookBundle/Resources/public/js/book_show/comments_management.js'
-    '@BookBundle/Resources/public/js/book_show/likes_management.js' %}
+    '@BookBundle/Resources/public/js/book_show/reader_management.js'
+    '@BookBundle/Resources/public/js/book_show/likes_management.js'
+    '@BookBundle/Resources/public/js/book_show/whislist_management.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

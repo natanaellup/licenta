@@ -10,5 +10,10 @@ add_like:
 delete_like:
     path:     /likes/delete
     defaults: { _controller: ActivityBundle:Like:deleteLike }
-
+add_reader:
+    path:     /reader/add
+    defaults: { _controller: ActivityBundle:Reader:add }
+add_whislist:
+    path:     /whislist/add
+    defaults: { _controller: ActivityBundle:Whislist:add }
 

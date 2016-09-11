@@ -19,3 +19,12 @@ UserBundle\Entity\User:
             comments:
                 targetEntity: ActivityBundle\Entity\Comment
                 mappedBy: user
+            readers:
+                targetEntity: ActivityBundle\Entity\Reader
+                mappedBy: user
+            likes:
+                targetEntity: ActivityBundle\Entity\Like
+                mappedBy: user
+            wishlists:
+                targetEntity: ActivityBundle\Entity\Wishlist
+                mappedBy: user

@@ -1,0 +1,22 @@
+ActivityBundle\Entity\Reader:
+    type: entity
+    table: readers
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        user:
+            targetEntity: UserBundle\Entity\User
+            inversedBy: readers
+            joinColumn:
+              name: user_id
+              referencedColumnName: id
+        book:
+            targetEntity: BookBundle\Entity\Book
+            inversedBy: readers
+            joinColumn:
+              name: book_id
+              referencedColumnName: id

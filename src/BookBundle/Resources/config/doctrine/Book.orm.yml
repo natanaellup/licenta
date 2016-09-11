@@ -73,3 +73,9 @@ BookBundle\Entity\Book:
         likes:
             targetEntity: ActivityBundle\Entity\Like
             mappedBy: book
+        readers:
+            targetEntity: ActivityBundle\Entity\Reader
+            mappedBy: book
+        wishlists:
+            targetEntity: ActivityBundle\Entity\Wishlist
+            mappedBy: book

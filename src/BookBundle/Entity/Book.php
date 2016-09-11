@@ -110,12 +110,25 @@ class Book
     private $likes;
 
     /**
+     * @var ArrayCollection
+     */
+    private $readers;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $wishlists;
+
+    /**
      * Book constructor.
      */
     public function __construct()
     {
         $this->authors = new ArrayCollection();
         $this->comments =  new ArrayCollection();
+        $this->readers = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->wishlists = new ArrayCollection();
     }
 
     /**
@@ -488,6 +501,80 @@ class Book
         $this->likes->removeElement($like);
 
         return $this->likes;
+    }
+
+    public function getReaders()
+    {
+        return $this->readers;
+    }
+
+    public function setReaders($readers)
+    {
+        $this->readers = $readers;
+
+        return $this;
+    }
+
+    public function addReader($reader)
+    {
+        $this->readers->add($reader);
+
+        return $this;
+    }
+
+    public function removeReader($reader)
+    {
+        $this->readers->removeElement($reader);
+
+        return $this;
+    }
+
+    public function getWishlists()
+    {
+        return $this->wishtlists;
+    }
+
+    public function setWishlists($wishlist)
+    {
+        $this->wishtlists = $wishlist;
+
+        return $this;
+    }
+
+    public function addWishlist($wishlist)
+    {
+        $this->wishlist->add($wishlist);
+
+        return $this;
+    }
+
+    public function removeWishlist($wishlist)
+    {
+        $this->wishlists->removeElement($wishlist);
+
+        return $this;
+    }
+
+    public function userWishListBook($user)
+    {
+        foreach ($this->wishlists as $wishlist) {
+            if($wishlist->getUser()->getId() == $user->getId()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function userReaderBook($user)
+    {
+        foreach ($this->readers as $reader) {
+            if($reader->getUser()->getId() == $user->getId()){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function userLikeBook($user)
