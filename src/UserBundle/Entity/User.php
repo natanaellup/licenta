@@ -51,6 +51,11 @@ class User extends BaseUser
     protected $avatar;
 
     /**
+     * @var string
+     */
+    protected $description;
+
+    /**
      * @var ArrayCollection
      */
     protected $comments;
@@ -110,6 +115,18 @@ class User extends BaseUser
     public function setBirthday(\DateTime $birthday)
     {
         $this->birthday = $birthday;
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
         return $this;
     }
 
@@ -268,7 +285,7 @@ class User extends BaseUser
 
     public function getWishlists()
     {
-        return $this->wishtlists;
+        return $this->wishlists;
     }
 
     public function setWishlists($wishlist)

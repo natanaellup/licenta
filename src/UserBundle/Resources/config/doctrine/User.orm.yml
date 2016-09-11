@@ -15,6 +15,10 @@ UserBundle\Entity\User:
         avatarUrl:
             type: string
             nullable: true
+
+        description:
+            type: string
+            nullable: true
     oneToMany:
             comments:
                 targetEntity: ActivityBundle\Entity\Comment

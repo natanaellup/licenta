@@ -7,6 +7,7 @@
         {{ form_errors(form.username) }}
         {{ form_errors(form.birthday) }}
         {{ form_errors(form.avatar) }}
+        {{ form_errors(form.description) }}
     </div>
 {% endif %}
 <div class="control-group">
@@ -19,6 +20,12 @@
     {{ form_label(form.username, null, {'label_attr': {'class': 'control-label'}}) }}
     <div class="controls">
         {{ form_widget (form.username, { attr : { class :"form-control" } } ) }}
+    </div>
+</div>
+<div class="control-group">
+    {{ form_label(form.description, null, {'label_attr': {'class': 'control-label'}}) }}
+    <div class="controls">
+        {{ form_widget (form.description, { attr : { class :"form-control" } } ) }}
     </div>
 </div>
 <div class="control-group">

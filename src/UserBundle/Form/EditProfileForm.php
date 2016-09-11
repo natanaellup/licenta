@@ -16,6 +16,7 @@ class EditProfileForm extends AbstractType
             ->add('username')
             ->add('email', 'text')
             ->add('birthday', 'birthday')
+            ->add('description', 'textarea')
             ->add('avatar', 'file',array('image_path' => 'avatarUrl', 'image_style' => 'avatar_profile_edit'));
     }
 

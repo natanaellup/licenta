@@ -2,7 +2,9 @@
 
 namespace UserBundle\Controller;
 
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 use UserBundle\Form\EditProfileForm;
@@ -15,6 +17,50 @@ class ProfileController extends \FOS\UserBundle\Controller\ProfileController
      * @var string
      */
     const PHOTO_DIRECTORY = 'uploads/user_avatar';
+
+    public function showAction()
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $bookLikes = $this->getBookForItem($user->getLike());
+        $bookWishlist = $this->getBookForItem($user->getWishlists());
+        $bookReader = $this->getBookForItem($user->getReaders());
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user, 'bookLikes' => $bookLikes, 'bookWishlist' => $bookWishlist, 'bookReader' => $bookReader
+        ));
+    }
+
+    public function showProfileAction(Request $request, $id)
+    {
+        $user = $this->getDoctrine()->getRepository('UserBundle:User')->find($id);
+
+        if(is_null($user)){
+            throw new NotFoundHttpException('User-ul nu exista!');
+        }
+
+        $bookLikes = $this->getBookForItem($user->getLike());
+        $bookWishlist = $this->getBookForItem($user->getWishlists());
+        $bookReader = $this->getBookForItem($user->getReaders());
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user, 'bookLikes' => $bookLikes, 'bookWishlist' => $bookWishlist, 'bookReader' => $bookReader
+        ));
+
+    }
+
+    private function getBookForItem($items)
+    {
+        $book = array();
+        foreach($items as $item){
+            $book[] = $item->getBook();
+        }
+
+        return $book;
+    }
 
     /**
      * Actiunea de editare a unui user.

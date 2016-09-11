@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+    <div class="span9">
+        <h3>{{ user.username }}</h3>
+        <div class="row" style="margin-bottom: 15px">
+            <div class="span2">
+                <img src="{{ asset(user.avatarUrl)|imagine_filter('avatar_profile') }}">
+            </div>
+            <div class="span7">
+                {% if user.birthday is not null %}
+                    <p><strong>Data nasterii: </strong>{{ user.birthday|date("m/d/Y") }}</p>
+                {% endif %}
+                <p>{{ user.description }}</p>
+            </div>
+        </div>
+        <div class="well">
+            {{ include('@User/Profile/show_content.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
