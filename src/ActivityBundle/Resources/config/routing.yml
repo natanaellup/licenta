@@ -4,5 +4,11 @@ add_comment:
 delete_comment:
     path:     /comments/delete
     defaults: { _controller: ActivityBundle:Comment:deleteComment }
+add_like:
+    path:     /likes/add
+    defaults: { _controller: ActivityBundle:Like:addLike }
+delete_like:
+    path:     /likes/delete
+    defaults: { _controller: ActivityBundle:Like:deleteLike }
 
 

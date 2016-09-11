@@ -22,3 +22,6 @@ book_bundle.category_details:
 book_bundle.show_book:
     path: /carte/{slug_name}/{id}
     defaults: { _controller: BookBundle:Book:showBook }
+book_bundle.show_books:
+    path: /carti
+    defaults: { _controller: BookBundle:Book:showBooksPage}

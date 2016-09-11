@@ -105,6 +105,11 @@ class Book
     private $comments;
 
     /**
+     * @var ArrayCollection
+     */
+    private $likes;
+
+    /**
      * Book constructor.
      */
     public function __construct()
@@ -457,6 +462,43 @@ class Book
         $this->mainFeatured = $mainFeatured;
 
         return $this;
+    }
+
+    public function addLike($like)
+    {
+        $this->likes->add($like);
+
+        return $this;
+    }
+
+    public function getLike()
+    {
+        return $this->likes;
+    }
+
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $likes;
+    }
+
+    public function removeLike($like)
+    {
+        $this->likes->removeElement($like);
+
+        return $this->likes;
+    }
+
+    public function userLikeBook($user)
+    {
+        foreach($this->likes as $like){
+            if($like->getUser()->getId() == $user->getId()){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

@@ -11,6 +11,52 @@ class FreeSearch
     private $freeText;
 
     /**
+     * @var Author
+     */
+    private $author;
+
+    /**
+     * @var Subcategory
+     */
+    private $subcategory;
+
+    /**
+     * @return Author
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param Author $author
+     * @return FreeSearch
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return Subcategory
+     */
+    public function getSubcategory()
+    {
+        return $this->subcategory;
+    }
+
+    /**
+     * @param Subcategory $subcategory
+     * @return FreeSearch
+     */
+    public function setSubcategory($subcategory)
+    {
+        $this->subcategory = $subcategory;
+        return $this;
+    }
+
+    /**
      * @var integer
      */
     private $page;

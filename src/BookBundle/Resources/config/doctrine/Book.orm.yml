@@ -70,3 +70,6 @@ BookBundle\Entity\Book:
         comments:
             targetEntity: ActivityBundle\Entity\Comment
             mappedBy: book
+        likes:
+            targetEntity: ActivityBundle\Entity\Like
+            mappedBy: book

@@ -3,13 +3,20 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Book;
+use BookBundle\Entity\FreeSearch;
 use BookBundle\Form\BookHandlerForm;
+use BookBundle\Form\SearchFreeTextForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BookController extends Controller
 {
+
+    /**
+     * Default page.
+     */
+    const DEFAULT_PAGE = 1;
 
     /**
      * @param Request $request
@@ -99,10 +106,31 @@ class BookController extends Controller
         $book = $this->getDoctrine()->getRepository('BookBundle:Book')->find($id);
 
         if(is_null($book) && !$book->isActive()){
-            throw new NotFoundHttpException('User-ul nu exista!');
+            throw new NotFoundHttpException('Cartea nu exista!');
         }
 
         return $this->render('BookBundle:Book:show.html.twig', array('book' => $book));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function showBooksPageAction(Request $request)
+    {
+        $bookRepo = $this->getDoctrine()->getRepository('BookBundle:Book');
+
+        $freeSearchEntity = new FreeSearch();
+        $form = $this->createForm(new SearchFreeTextForm($this->getDoctrine()),$freeSearchEntity);
+
+        $form->handleRequest($request);
+
+        $books = $bookRepo->findAll();
+        if($form->isValid()){
+            $freeSearchEntity = $form->getData();
+
+            $books = $bookRepo->findCriteria($freeSearchEntity);
+        }
+
+        return $this->render('BookBundle:Book:show_all.html.twig', array('books' => $books, 'form' => $form->createView()));
+    }
 }

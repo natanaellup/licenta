@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="span9">
+        <div style="padding-bottom: 25px">
+
+            {{ form_start(form, {'method': 'post', 'attr': {'class': 'form-inline navbar-search'}}) }}
+
+
+            {{ form_widget(form.freeText) }}
+            {{ form_widget(form.author) }}
+            {{ form_widget(form.subcategory) }}
+
+            <input class="form-control btn btn-success" type="submit" id="_submit" name="_submit"
+                   value="{{ 'Cauta' }}"/>
+            {{ form_end(form) }}
+        </div>
+
+        <div class="show-all-books">
+            {{ include('BookBundle:Block:latest_books_block.html.twig',{books: books} ) }}
+        </div>
+        <hr>
+    </div>
+{% endblock %}

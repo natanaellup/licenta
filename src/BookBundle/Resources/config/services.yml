@@ -43,3 +43,8 @@ services:
               - { name: sonata.admin, manager_type: orm, show_in_dashboard: false}
             calls:
               - [setTranslationDomain, [admin]]
+    bookbundle.search_form:
+            class: BookBundle\Form\SearchFreeTextForm
+            arguments: ["@doctrine"]
+            tags:
+                - { name: form.type, alias: search_free_text }

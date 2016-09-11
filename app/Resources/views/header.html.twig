@@ -2,8 +2,13 @@
     <div class="container">
         <div id="welcomeLine" class="row">
             {% if app.user is not null %}
-                <div class="span6">Bine ati venit, <strong><a href="{{ path('sonata_admin_dashboard') }}"> {{ app.user.username }} </a>
-                                                                        </strong>!</div>
+                <div class="span6">Bine ati venit, <strong><a
+                                href="{{ path('sonata_admin_dashboard') }}"> {{ app.user.username }} </a>
+                    </strong>!
+                </div>
+            {% else %}
+                <div class="span6"><strong><a
+                                href="{{ path('fos_user_registration_register') }}">Inregistrare</a></strong></div>
             {% endif %}
         </div>
         <!-- Navbar ================================================== -->
@@ -27,16 +32,16 @@
                         <option>SPORTS & LEISURE</option>
                         <option>BOOKS & ENTERTAINMENTS</option>
                     </select>
-                    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Cauta</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="special_offer.html">Carti</a></li>
+                    <li class=""><a href="{{ path('book_bundle.show_books') }}">Carti</a></li>
                     <li class=""><a href="{{ path('book_bundle.author_list_page') }}">Autori</a></li>
                     <li class="">
                         {% if app.user is null %}
                             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
                                         class="btn btn-large btn-success">Login</span></a>
-                            {% else %}
+                        {% else %}
                             <a href="{{ path('fos_user_security_logout') }}" role="button" style="padding-right:0"><span
                                         class="btn btn-large btn-danger">Logout</span></a>
                         {% endif %}
@@ -47,21 +52,26 @@
                                 <h3>Login</h3>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal loginFrm" action="{{ path("fos_user_security_check") }}" method="post">
-                                    <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}"/>
+                                <form class="form-horizontal loginFrm" action="{{ path("fos_user_security_check") }}"
+                                      method="post">
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}"/>
                                     <div class="control-group">
-                                        <input type="text" name="_username"  id="inputEmail" placeholder="Email">
+                                        <input type="text" name="_username" id="inputEmail" placeholder="Email">
                                     </div>
                                     <div class="control-group">
-                                        <input type="password" name="_password" id="inputPassword" placeholder="Password">
+                                        <input type="password" name="_password" id="inputPassword"
+                                               placeholder="Password">
                                     </div>
                                     <div class="control-group">
                                         <label class="checkbox">
                                             <input type="checkbox" name="_remember_me" value="on">Tine-ma minte
                                         </label>
                                     </div>
-                                    <button type="submit"type="submit" id="_submit" name="_submit"
-                                            value="{{ 'security.login.submit'|trans }}" class="btn btn-success">Sign in</button>
+                                    <button type="submit" type="submit" id="_submit" name="_submit"
+                                            value="{{ 'security.login.submit'|trans }}" class="btn btn-success">Sign in
+                                    </button>
+                                    <a href="{{ path('fos_user_resetting_request') }}"><strong>Reseteaza parola</strong></a>
                                 </form>
                             </div>
                         </div>

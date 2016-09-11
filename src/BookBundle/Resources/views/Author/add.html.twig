@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {% include 'BookBundle:Form:add_edit_author.html.twig' %}
+
+    <div class="span9">
+        <h3>Adauga autor</h3>
+        <div class="well">
+            {% include 'BookBundle:Form:add_edit_author.html.twig' %}
+        </div>
+    </div>
+
 {% endblock %}
 

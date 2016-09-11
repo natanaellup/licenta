@@ -3,15 +3,17 @@
     {% for book in books %}
         <li class="span3">
             <div class="thumbnail">
-                <a href="product_details.html"><img src="{{ asset(book.imageUrl)|imagine_filter('book_list') }}" alt=""/></a>
+                <a href="{{ path('book_bundle.show_book',{'slug_name': book.title|sonata_slugify, 'id': book.id}) }}">
+                    <img src="{{ asset(book.imageUrl)|imagine_filter('book_list') }}" alt=""/>
+                </a>
                 <div class="caption">
                     <h5>{{ book.title }}</h5>
                     <p>
-                        Lorem Ipsum is simply dummy text.
+                        {#Lorem Ipsum is simply dummy text.#}
                     </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-                                    class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
-                                    class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                    {#<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i#}
+                                    {#class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i#}
+                                    {#class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>#}
                 </div>
             </div>
         </li>

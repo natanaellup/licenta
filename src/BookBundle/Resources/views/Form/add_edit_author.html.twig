@@ -1,27 +1,41 @@
-<div id="editbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <div class="panel-title">{{ 'Author'|trans }}</div>
-        </div>
-
-        <div style="padding-top:30px" class="panel-body">
-
-            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-            {{ form_start(form, {'method': 'post', 'attr': {'class': 'fos_user_registration_register', 'novalidate' : 'novalidate'}}) }}
-
-            {{ form_row (form.firstName, { attr : { class :"form-control" } }) }}
-
-            {{ form_row (form.lastName, { attr : { class :"form-control" } }) }}
-
-            {{ form_row (form.description, { attr : { class :"form-control" } } )}}
-
-            {{ form_row (form.image, { attr: { class :"form-control" }}) }}
-
-            <div class="col-sm-12 controls" style="padding-top:15px">
-                <input class="form-control btn btn-primary" type="submit" id="_submit" name="_submit"
-                       value="{{ 'Save author'|trans }}"/>
-            </div>
-            {{ form_end(form) }}
-        </div>
+{{ form_start(form, {'method': 'post', 'attr': {'class': 'form-horizontal'}}) }}
+{% if not form.vars.valid %}
+    <div class="alert alert-block alert-error fade in">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ form_errors(form.firstName) }}
+        {{ form_errors(form.lastName) }}
+        {{ form_errors(form.description) }}
+        {{ form_errors(form.image) }}
+    </div>
+{% endif %}
+<div class="control-group">
+    {{ form_label(form.firstName, null, {'label_attr': {'class': 'control-label'}}) }}
+    <div class="controls">
+        {{ form_widget (form.firstName, { attr : { class :"form-control" } }) }}
     </div>
 </div>
+<div class="control-group">
+    {{ form_label(form.lastName, null, {'label_attr': {'class': 'control-label'}}) }}
+    <div class="controls">
+        {{ form_widget (form.lastName, { attr : { class :"form-control" } }) }}
+    </div>
+</div>
+<div class="control-group">
+    {{ form_label(form.description, null, {'label_attr': {'class': 'control-label'}}) }}
+    <div class="controls">
+        {{ form_widget (form.description, { attr : { class :"form-control" } } ) }}
+    </div>
+</div>
+<div class="control-group">
+    {{ form_label(form.image, null, {'label_attr': {'class': 'control-label'}}) }}
+    <div class="controls">
+        {{ form_widget (form.image, { attr : { class :"form-control" } } ) }}
+    </div>
+</div>
+<div class="control-group">
+    <div class="controls">
+        <input class="form-control btn btn-success" type="submit" id="_submit" name="_submit"
+               value="{{ 'Adaugare autor' }}"/>
+    </div>
+</div>
+{{ form_end(form) }}

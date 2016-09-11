@@ -1,0 +1,9 @@
+<div class="like-wrapper">
+    {% if noLikes != 0 %}
+        {% if noLikes == 1 %}
+            <p>Cartea aceasta are o apreciere.</p>
+        {% else %}
+            <p>Cartea aceasta are <strong>{{ noLikes }}</strong> aprecieri.</p>
+        {% endif %}
+    {% endif %}
+</div>
